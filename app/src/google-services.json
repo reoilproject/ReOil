@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "690146798315",
+    "project_id": "reoil-85ebe",
+    "storage_bucket": "reoil-85ebe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690146798315:android:fc9449d31f77852f1decae",
+        "android_client_info": {
+          "package_name": "com.example.reoil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "690146798315-td7e2q698rqmjhpo1pmolgfjgbaadt17.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.reoil",
+            "certificate_hash": "f304102f8de466a0731a35b07b40b54239993158"
+          }
+        },
+        {
+          "client_id": "690146798315-orkbhec6qka9pon8m4jf31jgd6u86iee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXXZLks47iGQLUh7ww6m7L4fVJwqymkBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "690146798315-orkbhec6qka9pon8m4jf31jgd6u86iee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
