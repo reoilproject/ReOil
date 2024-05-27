@@ -102,14 +102,7 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (email == "muhammrafli12@gmail.com" && password == "raflirafli12") {
-                // Navigasi ke MainActivity
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else {
-                Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
-            }
+            loginUser(email, password)
         }
 
         tv_register.setOnClickListener {
@@ -168,6 +161,21 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    private fun loginUser(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Login sukses, arahkan ke MainActivity
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    // Jika login gagal, tampilkan pesan ke pengguna
+                    Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     private fun animateTextViews() {

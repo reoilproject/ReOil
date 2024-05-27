@@ -6,17 +6,23 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.reoil.databinding.ActivityRegisterBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Inisialisasi FirebaseAuth
+        auth = FirebaseAuth.getInstance()
 
         binding.edtEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -57,17 +63,47 @@ class RegisterActivity : AppCompatActivity() {
     private fun setupAction() {
         binding.signupButton.setOnClickListener {
             val email = binding.edtEmail.text.toString()
+            val password = binding.edtPassword.text.toString()
+            val confirmPassword = binding.edtConfirmpassword.text.toString()
 
-            AlertDialog.Builder(this).apply {
-                setTitle("Yeah!")
-                setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
-                setPositiveButton("Lanjut") { _, _ ->
-                    finish()
-                }
-                create()
-                show()
+            if (email.isEmpty()) {
+                binding.edtEmail.error = "Email is required"
+                return@setOnClickListener
             }
+
+            if (password.isEmpty()) {
+                binding.edtPassword.error = "Password is required"
+                return@setOnClickListener
+            }
+
+            if (password != confirmPassword) {
+                binding.edtConfirmpassword.error = "Passwords do not match"
+                return@setOnClickListener
+            }
+
+            registerUser(email, password)
         }
+    }
+
+    private fun registerUser(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Registrasi sukses, tampilkan dialog konfirmasi
+                    AlertDialog.Builder(this).apply {
+                        setTitle("Yeah!")
+                        setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
+                        setPositiveButton("Lanjut") { _, _ ->
+                            finish()
+                        }
+                        create()
+                        show()
+                    }
+                } else {
+                    // Jika registrasi gagal, tampilkan pesan ke pengguna
+                    Toast.makeText(this, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     private fun animateTextViews() {
