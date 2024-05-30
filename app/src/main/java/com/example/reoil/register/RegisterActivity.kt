@@ -1,5 +1,6 @@
 package com.example.reoil.register
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -9,7 +10,9 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.reoil.R
 import com.example.reoil.databinding.ActivityRegisterBinding
+import com.example.reoil.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
@@ -21,7 +24,6 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inisialisasi FirebaseAuth
         auth = FirebaseAuth.getInstance()
 
         binding.edtEmail.addTextChangedListener(object : TextWatcher {
@@ -42,13 +44,17 @@ class RegisterActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
+        binding.tvLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         setupView()
         setupAction()
         animateTextViews()
     }
 
     private fun setupView() {
-        @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
         } else {
@@ -67,17 +73,17 @@ class RegisterActivity : AppCompatActivity() {
             val confirmPassword = binding.edtConfirmpassword.text.toString()
 
             if (email.isEmpty()) {
-                binding.edtEmail.error = "Email is required"
+                binding.edtEmail.error = getString(R.string.error_email_required)
                 return@setOnClickListener
             }
 
             if (password.isEmpty()) {
-                binding.edtPassword.error = "Password is required"
+                binding.edtPassword.error = getString(R.string.error_password_required)
                 return@setOnClickListener
             }
 
             if (password != confirmPassword) {
-                binding.edtConfirmpassword.error = "Passwords do not match"
+                binding.edtConfirmpassword.error = getString(R.string.error_password_mismatch)
                 return@setOnClickListener
             }
 
@@ -85,14 +91,14 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+
     private fun registerUser(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Registrasi sukses, tampilkan dialog konfirmasi
                     AlertDialog.Builder(this).apply {
                         setTitle("Yeah!")
-                        setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
+                        setMessage("Akun dengan $email sudah jadi nih. Yuk, ubah minyak kotormu jadi uang.")
                         setPositiveButton("Lanjut") { _, _ ->
                             finish()
                         }
@@ -100,8 +106,11 @@ class RegisterActivity : AppCompatActivity() {
                         show()
                     }
                 } else {
-                    // Jika registrasi gagal, tampilkan pesan ke pengguna
-                    Toast.makeText(this, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Registration failed: ${task.exception?.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }
@@ -109,17 +118,15 @@ class RegisterActivity : AppCompatActivity() {
     private fun animateTextViews() {
         binding.titleTextView.animate().alpha(1f).setDuration(1000).setStartDelay(500)
         binding.detailRegisterText.animate().alpha(1f).setDuration(1000).setStartDelay(700)
-        binding.nameTextView.animate().alpha(1f).setDuration(1000).setStartDelay(900)
-        binding.usernameEditText.animate().alpha(1f).setDuration(1000).setStartDelay(1100)
-        binding.textViewEmail.animate().alpha(1f).setDuration(1000).setStartDelay(1300)
-        binding.edtEmail.animate().alpha(1f).setDuration(1000).setStartDelay(1500)
-        binding.textViewPassword.animate().alpha(1f).setDuration(1000).setStartDelay(1700)
-        binding.edtPassword.animate().alpha(1f).setDuration(1000).setStartDelay(1900)
-        binding.ConfirmpasswordTextView.animate().alpha(1f).setDuration(1000).setStartDelay(2100)
-        binding.edtConfirmpassword.animate().alpha(1f).setDuration(1000).setStartDelay(2300)
-        binding.signupButton.animate().alpha(1f).setDuration(1000).setStartDelay(2500)
-        binding.iconreoil.animate().alpha(1f).setDuration(1000).setStartDelay(2700)
-        binding.textView3.animate().alpha(1f).setDuration(1000).setStartDelay(2900)
-        binding.tvLogin.animate().alpha(1f).setDuration(1000).setStartDelay(3100)
+        binding.textViewEmail.animate().alpha(1f).setDuration(1000).setStartDelay(900)
+        binding.edtEmail.animate().alpha(1f).setDuration(1000).setStartDelay(1300)
+        binding.textViewPassword.animate().alpha(1f).setDuration(1000).setStartDelay(1500)
+        binding.edtPassword.animate().alpha(1f).setDuration(1000).setStartDelay(1700)
+        binding.ConfirmpasswordTextView.animate().alpha(1f).setDuration(1000).setStartDelay(1900)
+        binding.edtConfirmpassword.animate().alpha(1f).setDuration(1000).setStartDelay(2100)
+        binding.signupButton.animate().alpha(1f).setDuration(1000).setStartDelay(2300)
+        binding.iconreoil.animate().alpha(1f).setDuration(1000).setStartDelay(2500)
+        binding.textView3.animate().alpha(1f).setDuration(1000).setStartDelay(2700)
+        binding.tvLogin.animate().alpha(1f).setDuration(1000).setStartDelay(2900)
     }
 }

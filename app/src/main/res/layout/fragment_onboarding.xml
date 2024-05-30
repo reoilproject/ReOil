@@ -9,12 +9,12 @@
 
     <ImageView
         android:id="@+id/image_onboarding"
-        android:layout_width="401dp"
+        android:layout_width="0dp"
         android:layout_height="401dp"
         android:layout_margin="30dp"
         android:layout_marginTop="0dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/onboard01"
+        android:src="@drawable/onboard02"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

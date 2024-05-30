@@ -3,10 +3,8 @@
     <string name="where_the_world_builds_software">Where the World Builds Software</string>
     <string name="register">Register</string>
     <string name="ConfirmPassword">Input your password again</string>
-    <string name="password">Password</string>
     <string name="InputPassword">Input your password</string>
     <string name="InputEmail">Input your email</string>
-    <string name="email">Email</string>
     <string name="InputUsername">Input your username</string>
     <string name="username">Username</string>
     <string name="title_register">Joins Us!</string>
@@ -14,7 +12,6 @@
     <string name="ConfirmPasswordText">Confirm Password</string>
     <string name="SignUpGoogle">Sign Up with Google</string>
     <string name="have_an_account">Have an account?</string>
-    <string name="login">Login</string>
     <string name="sign_in_with_google">Sign Up with Google</string>
     <string name="or">Or</string>
     <string name="next">Next</string>
@@ -37,4 +34,7 @@
     <string name="subTitleLogin">Login to your account</string>
     <string name="TitleLogin">Welcome!</string>
     <string name="default_web_client_id">690146798315-td7e2q698rqmjhpo1pmolgfjgbaadt17.apps.googleusercontent.com</string>
+    <string name="error_email_required">Email is required</string>
+    <string name="error_password_required">Password is required</string>
+    <string name="error_password_mismatch">Passwords do not match</string>
 </resources>

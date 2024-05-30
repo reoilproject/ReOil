@@ -6,22 +6,20 @@ import android.os.Handler
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.reoil.Onboarding.OnboardingActivity
+import com.example.reoil.databinding.ActivitySplashScreenBinding
 
 class SplashScreen : AppCompatActivity() {
 
     private lateinit var topAnimation: Animation
-    private lateinit var buttomAnimation: Animation
-    private lateinit var imageGithub: ImageView
-    private lateinit var imageLogo : ImageView
-    private lateinit var slogan : TextView
+    private lateinit var bottomAnimation: Animation
+    private lateinit var binding: ActivitySplashScreenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
+        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -35,12 +33,9 @@ class SplashScreen : AppCompatActivity() {
         }, 3000)
 
         topAnimation = AnimationUtils.loadAnimation(this, R.anim.top_animation)
-        buttomAnimation = AnimationUtils.loadAnimation(this, R.anim.buttom_animation)
+        bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.buttom_animation)
 
-        imageGithub = findViewById(R.id.github_icon)
-        imageLogo = findViewById(R.id.github_icon_text)
-
-        imageGithub.startAnimation(topAnimation)
-        imageLogo.startAnimation(buttomAnimation)
+        binding.githubIcon.startAnimation(topAnimation)
+        binding.githubIconText.startAnimation(bottomAnimation)
     }
 }

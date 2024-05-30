@@ -19,11 +19,13 @@ class OnboardingViewPagerAdapter(
                 context.resources.getString(R.string.description_onboarding_1),
                 R.drawable.onboard01
             )
+
             1 -> OnboardingFragment.newInstance(
                 context.resources.getString(R.string.title_onboarding_2),
                 context.resources.getString(R.string.description_onboarding_2),
                 R.drawable.onboard02
             )
+
             else -> OnboardingFragment.newInstance(
                 context.resources.getString(R.string.title_onboarding_3),
                 context.resources.getString(R.string.description_onboarding_3),
