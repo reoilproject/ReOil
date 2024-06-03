@@ -1,4 +1,4 @@
-package com.example.reoil.register
+package com.example.reoil.view.register
 
 import android.content.Intent
 import android.os.Build
@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.reoil.R
 import com.example.reoil.databinding.ActivityRegisterBinding
-import com.example.reoil.login.LoginActivity
+import com.example.reoil.view.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {

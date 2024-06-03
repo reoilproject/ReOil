@@ -37,4 +37,6 @@
     <string name="error_email_required">Email is required</string>
     <string name="error_password_required">Password is required</string>
     <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="back_button">btn_back</string>
+    <string name="notification_icon">btn_notification</string>
 </resources>

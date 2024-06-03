@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.reoil.R
 import com.example.reoil.databinding.ActivityOnboardingBinding
-import com.example.reoil.login.LoginActivity
+import com.example.reoil.view.login.LoginActivity
 import com.google.android.material.tabs.TabLayoutMediator
 
 class OnboardingActivity : AppCompatActivity() {
