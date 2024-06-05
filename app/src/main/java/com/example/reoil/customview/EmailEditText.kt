@@ -1,10 +1,13 @@
 package com.example.reoil.customview
 
 import android.content.Context
+import android.os.Build
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
+import com.example.reoil.R
 
 class EmailEditText : AppCompatEditText {
 
@@ -25,6 +28,15 @@ class EmailEditText : AppCompatEditText {
     }
 
     private fun init() {
+        inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        compoundDrawablePadding = 16
+        typeface = resources.getFont(R.font.montserrat_medium)
+        setTypeface(typeface)
+        setHint(R.string.hint_email)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setAutofillHints(AUTOFILL_HINT_USERNAME)
+        }
+
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }

@@ -1,34 +1,41 @@
-package com.example.reoil.view.rewardpage
+package com.example.reoil.view.scan
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.example.reoil.databinding.ActivityRewardPageBinding
-import com.example.reoil.view.notification.NotificationActivity
+import com.example.reoil.databinding.ActivityCameraBinding
 
-class RewardPageActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityRewardPageBinding
+class CameraActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityCameraBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRewardPageBinding.inflate(layoutInflater)
+        binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.backButton.setOnClickListener {
-            onBackPressed()
+        binding.switchCamera.setOnClickListener {
+            startCamera()
         }
-        binding.btnNotification.setOnClickListener {
-            val intent = Intent(this, NotificationActivity::class.java)
-            startActivity(intent)
-        }
-        setupView()
+        binding.captureImage.setOnClickListener { takePhoto() }
     }
 
-    private fun setupView() {
+    public override fun onResume() {
+        super.onResume()
+        hideSystemUI()
+        startCamera()
+    }
+
+    private fun startCamera() {
+        // showCamera
+    }
+
+    private fun takePhoto() {
+        // takePhoto
+    }
+
+    private fun hideSystemUI() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())

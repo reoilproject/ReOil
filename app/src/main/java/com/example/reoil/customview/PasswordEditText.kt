@@ -2,11 +2,14 @@ package com.example.reoil.customview
 
 import android.content.Context
 import android.graphics.Canvas
+import android.os.Build
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
+import com.example.reoil.R
 
 class PasswordEditText : AppCompatEditText {
 
@@ -34,6 +37,16 @@ class PasswordEditText : AppCompatEditText {
     }
 
     private fun init() {
+        inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        compoundDrawablePadding = 16
+        typeface = resources.getFont(R.font.montserrat_medium)
+        setTypeface(typeface)
+
+        setHint(R.string.hint_password)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setAutofillHints(AUTOFILL_HINT_USERNAME)
+        }
+
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }

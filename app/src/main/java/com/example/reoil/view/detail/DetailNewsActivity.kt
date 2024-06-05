@@ -1,33 +1,31 @@
-package com.example.reoil.view.rewardpage
+package com.example.reoil.view.detail
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.example.reoil.databinding.ActivityRewardPageBinding
-import com.example.reoil.view.notification.NotificationActivity
+import com.example.reoil.databinding.ActivityDetailNewsBinding
 
-class RewardPageActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityRewardPageBinding
+class DetailNewsActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityDetailNewsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRewardPageBinding.inflate(layoutInflater)
+        binding = ActivityDetailNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.backButton.setOnClickListener {
-            onBackPressed()
-        }
-        binding.btnNotification.setOnClickListener {
-            val intent = Intent(this, NotificationActivity::class.java)
-            startActivity(intent)
-        }
+        val title = intent.getStringExtra("EXTRA_TITLE")
+        val description = intent.getStringExtra("EXTRA_DESCRIPTION")
+        val date = intent.getStringExtra("EXTRA_DATE")
+        val imageId = intent.getIntExtra("EXTRA_IMAGE_ID", 0)
+
+        binding.ivDetailPhoto.setImageResource(imageId)
+        binding.tvDetailName.text = title
+        binding.tvDetailDescription.text = description
+        binding.textViewDesc.text = date
         setupView()
     }
-
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

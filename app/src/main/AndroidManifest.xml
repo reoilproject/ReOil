@@ -15,6 +15,18 @@
         android:theme="@style/Theme.ReOil"
         tools:targetApi="31">
         <activity
+            android:name=".view.detail.DetailNewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.news.NewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.scan.CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.notification.NotificationActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.rewardpage.RewardPageActivity"
             android:exported="false" />
         <activity

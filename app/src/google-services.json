@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "690146798315",
-    "project_id": "reoil-85ebe",
-    "storage_bucket": "reoil-85ebe.appspot.com"
+    "project_number": "927578963618",
+    "project_id": "reoil-backend",
+    "storage_bucket": "reoil-backend.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:690146798315:android:fc9449d31f77852f1decae",
+        "mobilesdk_app_id": "1:927578963618:android:255f34512782026e9c21fb",
         "android_client_info": {
           "package_name": "com.example.reoil"
         }
       },
       "oauth_client": [
         {
-          "client_id": "690146798315-td7e2q698rqmjhpo1pmolgfjgbaadt17.apps.googleusercontent.com",
+          "client_id": "927578963618-45bg2c6q5nqitb0e0ci6jqtm66tdkg1l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.reoil",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "690146798315-orkbhec6qka9pon8m4jf31jgd6u86iee.apps.googleusercontent.com",
+          "client_id": "927578963618-ode39do29j0rlk8k1icdin3uv52dnqha.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAXXZLks47iGQLUh7ww6m7L4fVJwqymkBw"
+          "current_key": "AIzaSyCKIMdYlQ92eHI8tm9ryCdQ9zHAdLb5gSU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "690146798315-orkbhec6qka9pon8m4jf31jgd6u86iee.apps.googleusercontent.com",
+              "client_id": "927578963618-ode39do29j0rlk8k1icdin3uv52dnqha.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
