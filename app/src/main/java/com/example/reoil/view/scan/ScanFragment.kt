@@ -14,6 +14,7 @@ import com.example.reoil.databinding.FragmentScanBinding
 import com.example.reoil.utils.getImageUri
 import com.example.reoil.utils.reduceFileImage
 import com.example.reoil.utils.uriToFile
+import com.example.reoil.view.result.ResultActivity
 import java.io.File
 
 class ScanFragment : Fragment() {
@@ -81,9 +82,9 @@ class ScanFragment : Fragment() {
     }
 
     private fun showImage(imageUri: Uri) {
-        val inputStream = requireContext().contentResolver.openInputStream(imageUri)
-        val bitmap = BitmapFactory.decodeStream(inputStream)
-        binding.imageView4.setImageBitmap(bitmap)
+        val intent = Intent(requireContext(), ResultActivity::class.java)
+        intent.putExtra("imageUri", imageUri.toString())
+        startActivity(intent)
     }
 
     override fun onDestroyView() {
