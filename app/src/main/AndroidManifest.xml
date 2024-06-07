@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ReOil"
         tools:targetApi="31">
         <activity
+            android:name=".view.settings.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.detail.DetailNewsActivity"
             android:exported="false" />
         <activity
@@ -39,7 +42,7 @@
             android:name=".view.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".main.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +50,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- MainActivity -->
-        <activity android:name=".MainActivity" />
+        <activity android:name=".main.MainActivity" />
     </application>
 
 </manifest>

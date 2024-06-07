@@ -8,7 +8,7 @@ import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.reoil.MainActivity
+import com.example.reoil.main.MainActivity
 import com.example.reoil.R
 import com.example.reoil.databinding.ActivityLoginBinding
 import com.example.reoil.utils.PreferencesHelper

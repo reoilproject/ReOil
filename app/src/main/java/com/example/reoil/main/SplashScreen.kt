@@ -1,4 +1,4 @@
-package com.example.reoil
+package com.example.reoil.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.example.reoil.Onboarding.OnboardingActivity
+import com.example.reoil.R
 import com.example.reoil.databinding.ActivitySplashScreenBinding
 import com.example.reoil.utils.PreferencesHelper
 

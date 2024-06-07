@@ -1,31 +1,28 @@
-package com.example.reoil
+package com.example.reoil.main
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.reoil.R
 import com.example.reoil.databinding.ActivityMainBinding
 import com.example.reoil.utils.PreferencesHelper
-import com.example.reoil.utils.getImageUri
-import com.example.reoil.utils.uriToFile
 import com.example.reoil.view.home.HomeFragment
 import com.example.reoil.view.login.LoginActivity
-import com.example.reoil.view.rewardpage.RewardPageActivity
+import com.example.reoil.view.scan.ScanFragment
+import com.example.reoil.view.settings.SettingsFragment
 import com.google.firebase.auth.FirebaseAuth
-import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var preferencesHelper: PreferencesHelper
     private lateinit var binding: ActivityMainBinding
-    private var getFile: File? = null
-    private var currentImageUri: Uri? = null
+    private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,48 +34,27 @@ class MainActivity : AppCompatActivity() {
 
         val user = auth.currentUser
 
-        val homeFragment = HomeFragment().apply {
-            arguments = Bundle().apply {
-                if (user != null) {
-                    putString("USERNAME", "Welcome, ${user.displayName}")
-                }
-                if (user != null) {
-                    putString("PHOTO_URL", user.photoUrl.toString())
-                }
-            }
+        if (user != null) {
+            userViewModel.username = "Welcome, ${user.displayName}"
+            userViewModel.photoUrl = user.photoUrl.toString()
         }
+
+        val homeFragment = HomeFragment()
 
         replaceFragment(homeFragment)
         setupView()
 
         binding.bottomNavigationView.setOnItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.home -> replaceFragment(HomeFragment())
-                R.id.scan -> {
-                    startCamera()
-                }
+                R.id.scan -> replaceFragment(ScanFragment())
                 R.id.map -> replaceFragment(HomeFragment())
-                R.id.user -> replaceFragment(HomeFragment())
-                else->{
-
+                R.id.user -> replaceFragment(SettingsFragment())
+                else -> {
+                    // Handle other cases if necessary
                 }
-
             }
             true
-
-        }
-
-        binding.btLogout.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            preferencesHelper.clearLoginStatus()
-
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
-
-        binding.button.setOnClickListener {
-            val intent = Intent(this, RewardPageActivity::class.java)
-            startActivity(intent)
         }
     }
 
@@ -95,24 +71,10 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    private fun startCamera() {
-        currentImageUri = getImageUri(this) // Dapatkan URI untuk menyimpan foto
-        launcherIntentCamera.launch(currentImageUri!!)
-    }
-
-    private val launcherIntentCamera = registerForActivityResult(
-        ActivityResultContracts.TakePicture()
-    ) { isSuccess ->
-        if (isSuccess) {
-            getFile =
-                uriToFile(currentImageUri!!, this) // Anda perlu implementasi fungsi `uriToFile`
-        }
-    }
-
-    private fun replaceFragment(fragment: Fragment){
+    private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout,fragment)
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
     }
 

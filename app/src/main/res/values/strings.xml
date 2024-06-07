@@ -59,6 +59,28 @@
     <string name="date_news">05 Jun 2024 | 19:55</string>
     <string name="news">News</string>
     <string name="description">Description</string>
+    <string name="profile">Profile</string>
+    <string name="congratsProfile">You got 250 Points of your used cooking oil</string>
+    <string name="nameProfile">Ahmad Damanhuri</string>
+    <string name="emailProfile">adam@gmail.com</string>
+    <string name="logout">Logout</string>
+    <string name="save">Save</string>
+    <string name="address">Pacific Century Place Tower Level 45 SCBD Lot 10, Jl. Jend. Sudirman No.53,</string>
+    <string name="phone">08123456789</string>
+    <string name="username_profile">adam24</string>
+    <string name="password_profile">adamganteng</string>
+    <string name="phoneTextView">Phone</string>
+    <string name="addressTextView">Address</string>
+    <string name="title_general">General</string>
+    <string name="desc_general">Edit Profile Detail, Change Picture...</string>
+    <string name="title_location">Location</string>
+    <string name="desc_location">Change Address and Pin location.</string>
+    <string name="title_settings">Settings</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="scan">Scan</string>
+    <string name="guideScan">\"Scan or input your used cooking oil image from the gallery\"</string>
+    <string name="desc_logout">Logging out of your account</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".view.settings.ProfileActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/pp_edit"
+        android:layout_width="97dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/profilepicture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_profilePage" />
+
+    <ImageView
+        android:id="@+id/bt_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+
+    <TextView
+        android:id="@+id/title_profilePage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/profile"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_notification"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/bt_back"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_notification"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:contentDescription="@string/notification_icon"
+        android:src="@drawable/baseline_notifications_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_usernameProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/nameProfile"
+        android:textSize="15sp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pp_edit" />
+
+    <!-- Phone -->
+
+    <TextView
+        android:id="@+id/tv_emailProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/emailProfile"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_usernameProfile" />
+
+    <TextView
+        android:id="@+id/textViewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/username"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/username_profile"
+        app:layout_constraintEnd_toEndOf="@+id/username_profile"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/username_profile"
+        app:layout_constraintTop_toBottomOf="@+id/tv_emailProfile"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/username_profile"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/tv_emailProfile"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_edit_text_profile"
+        android:drawableStart="@drawable/ic_baseline_person_24"
+        android:drawablePadding="10dp"
+        android:hint="@string/username_profile"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_emailProfile" />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/emailTitleInput"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/email_profile"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/email_profile"
+        app:layout_constraintTop_toBottomOf="@+id/username_profile" />
+
+    <EditText
+        android:id="@+id/email_profile"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/username_profile"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_edit_text_profile"
+        android:drawableStart="@drawable/ic_baseline_email_24"
+        android:drawablePadding="10dp"
+        android:hint="@string/emailProfile"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/username_profile"
+        app:layout_constraintStart_toStartOf="@+id/username_profile"
+        app:layout_constraintTop_toBottomOf="@+id/username_profile" />
+
+    <TextView
+        android:id="@+id/textViewPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/phoneTextView"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/phone_profile"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/phone_profile"
+        app:layout_constraintTop_toBottomOf="@+id/email_profile" />
+
+    <EditText
+        android:id="@+id/phone_profile"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/email_profile"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_edit_text_profile"
+        android:drawableStart="@drawable/baseline_phone_24"
+        android:drawablePadding="10dp"
+        android:hint="@string/phone"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/email_profile"
+        app:layout_constraintStart_toStartOf="@+id/email_profile"
+        app:layout_constraintTop_toBottomOf="@+id/email_profile" />
+
+    <TextView
+        android:id="@+id/textViewAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/addressTextView"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/address_profile"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/address_profile"
+        app:layout_constraintTop_toBottomOf="@+id/phone_profile" />
+
+    <EditText
+        android:id="@+id/address_profile"
+        android:layout_width="300dp"
+        android:layout_height="95dp"
+        android:layout_below="@id/phone_profile"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_edit_text_profile"
+        android:drawableStart="@drawable/address"
+        android:drawablePadding="10dp"
+        android:hint="@string/address"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/phone_profile"
+        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintStart_toStartOf="@+id/phone_profile"
+        app:layout_constraintTop_toBottomOf="@+id/phone_profile" />
+
+    <TextView
+        android:id="@+id/textViewPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/passwordTitleInput"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/password_profile"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/password_profile"
+        app:layout_constraintTop_toBottomOf="@+id/address_profile" />
+
+    <EditText
+        android:id="@+id/password_profile"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_below="@id/address_profile"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_edit_text_profile"
+        android:drawableStart="@drawable/ic_baseline_lock_24"
+        android:drawablePadding="10dp"
+        android:hint="@string/password_profile"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/address_profile"
+        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintStart_toStartOf="@+id/address_profile"
+        app:layout_constraintTop_toBottomOf="@+id/address_profile" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/white"
+        android:text="@string/save"
+        android:textColor="@color/green"
+        app:cornerRadius="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_profile"
+        app:layout_constraintVertical_bias="0.714"
+        app:strokeColor="@color/green"
+        app:strokeWidth="1dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

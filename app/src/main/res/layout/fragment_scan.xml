@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.scan.ScanFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".view.scan.CameraActivity" >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_gallery"
+            android:layout_width="159dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/green"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/gallery"
+            android:textSize="12sp"
+            app:cornerRadius="6dp"
+            app:icon="@drawable/gallery_icon"
+            app:iconSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_camera" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_camera"
+            android:layout_width="159dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="28dp"
+            android:backgroundTint="@color/green"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/camera"
+            android:textSize="12sp"
+            app:cornerRadius="6dp"
+            app:icon="@drawable/baseline_photo_camera_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/tv_titleScan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/scan"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="275dp"
+            android:layout_height="275dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titleScan"
+            app:srcCompat="@drawable/image_scan" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="242dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="36dp"
+            android:alpha="0.7"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/guideScan"
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
