@@ -225,6 +225,45 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_aboutUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/textAboutUs"
+            android:textColor="@color/green"
+            android:textSize="13dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.091"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/container_logout" />
+
+        <TextView
+            android:id="@+id/desc_aboutUs"
+            android:layout_width="332dp"
+            android:layout_height="74dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:justificationMode="inter_word"
+            android:text="@string/desc_aboutUs"
+            android:textColor="@color/green"
+            android:textSize="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_aboutUs" />
+
+        <ImageView
+            android:id="@+id/iconReoil"
+            android:layout_width="80dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/reoil_icon_textgreen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.869"
+            app:layout_constraintStart_toEndOf="@+id/tv_aboutUs"
+            app:layout_constraintTop_toBottomOf="@+id/container_logout" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
