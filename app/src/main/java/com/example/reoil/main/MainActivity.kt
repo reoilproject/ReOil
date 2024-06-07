@@ -13,6 +13,7 @@ import com.example.reoil.databinding.ActivityMainBinding
 import com.example.reoil.utils.PreferencesHelper
 import com.example.reoil.view.home.HomeFragment
 import com.example.reoil.view.login.LoginActivity
+import com.example.reoil.view.map.MapFragment
 import com.example.reoil.view.scan.ScanFragment
 import com.example.reoil.view.settings.SettingsFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.scan -> replaceFragment(ScanFragment())
-                R.id.map -> replaceFragment(HomeFragment())
+                R.id.map -> replaceFragment(MapFragment())
                 R.id.user -> replaceFragment(SettingsFragment())
                 else -> {
                     // Handle other cases if necessary

@@ -83,6 +83,14 @@
     <string name="desc_logout">Logging out of your account</string>
     <string name="textAboutUs">About us</string>
     <string name="desc_aboutUs">Welcome to ReOil! We transform used cooking oil into valuable resources through our eco-friendly recycling platform. Our mission is to help households and businesses recycle their used cooking oil easily, protecting the environment and supporting the community. With the ReOil app, you can find nearby collection points, exchange used oil for rewards, and help reduce pollution. By choosing ReOil, you become an environmental guardian and earn money, turning waste into wealth.</string>
+    <string name="result">Result</string>
+    <string name="predict_harga">Rp. 3000/L</string>
+    <string name="trade">Trade</string>
+    <string name="BackHome">Back to home</string>
+    <string name="detail_oil">"The quality of your used cooking oil : "</string>
+    <string name="resultScan">Good</string>
+    <string name="guideDirect">You will be directed to a map with the collector\'s number to chat.</string>
+    <string name="map">Map</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>
