@@ -91,6 +91,8 @@
     <string name="resultScan">Good</string>
     <string name="guideDirect">You will be directed to a map with the collector\'s number to chat.</string>
     <string name="map">Map</string>
+    <string name="content_news">Description News</string>
+    <string name="title_news">Title News</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>

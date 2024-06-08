@@ -1,20 +1,19 @@
 package com.example.reoil.view.news
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.reoil.databinding.ItemRowNewsBinding
-import com.example.reoil.view.detail.DetailNewsActivity
+import com.example.reoil.response.NewsItem
 
-class NewsAdapter(
-    private val context: Context,
-    private val imageIds: Array<Int>,
-    private val titles: Array<String>,
-    private val dates: Array<String>,
-    private val descriptions: Array<String>
-) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+    private var newsList = listOf<NewsItem>()
+
+    fun setNewsList(newsList: List<NewsItem>) {
+        this.newsList = newsList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val binding = ItemRowNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,24 +21,20 @@ class NewsAdapter(
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        holder.bind(imageIds[position], titles[position], dates[position], descriptions[position])
+        holder.bind(newsList[position])
     }
 
-    override fun getItemCount(): Int = titles.size
+    override fun getItemCount(): Int = newsList.size
 
-    inner class NewsViewHolder(private val binding: ItemRowNewsBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(imageId: Int, title: String, date: String, description: String) {
-            binding.imgItemPhoto.setImageResource(imageId)
-            binding.tvItemName.text = title
-            binding.tvItemFrom.text = date
-            binding.cardView.setOnClickListener {
-                val intent = Intent(context, DetailNewsActivity::class.java).apply {
-                    putExtra("EXTRA_TITLE", title)
-                    putExtra("EXTRA_DESCRIPTION", description)
-                    putExtra("EXTRA_DATE", date)
-                    putExtra("EXTRA_IMAGE_ID", imageId)
-                }
-                context.startActivity(intent)
+    class NewsViewHolder(private val binding: ItemRowNewsBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(newsItem: NewsItem) {
+            binding.apply {
+                tvItemName.text = newsItem.title
+                tvItemFrom.text = newsItem.content
+                // Load image using Glide or another library
+                Glide.with(imgItemPhoto.context)
+                    .load(newsItem.imageUrl)
+                    .into(imgItemPhoto)
             }
         }
     }

@@ -1,29 +1,36 @@
 package com.example.reoil.view.login
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.reoil.main.MainActivity
+import androidx.credentials.CredentialManager
+import androidx.credentials.CustomCredential
+import androidx.credentials.GetCredentialRequest
+import androidx.credentials.GetCredentialResponse
+import androidx.credentials.exceptions.GetCredentialException
+import androidx.lifecycle.lifecycleScope
 import com.example.reoil.R
 import com.example.reoil.databinding.ActivityLoginBinding
+import com.example.reoil.main.MainActivity
 import com.example.reoil.utils.PreferencesHelper
 import com.example.reoil.view.register.RegisterActivity
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
+import com.google.android.libraries.identity.googleid.GetGoogleIdOption
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var binding: ActivityLoginBinding
     private lateinit var preferencesHelper: PreferencesHelper
 
@@ -35,18 +42,8 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         preferencesHelper = PreferencesHelper(this)
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
-
         binding.loginGoogle.setOnClickListener {
-            googleSignInClient.signOut().addOnCompleteListener {
-                val signInIntent = googleSignInClient.signInIntent
-                startActivityForResult(signInIntent, RC_SIGN_IN)
-            }
+            signIn()
         }
 
         window.setFlags(
@@ -116,6 +113,58 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun signIn() {
+        showLoading(true)
+        val credentialManager = CredentialManager.create(this)
+
+        val googleIdOption = GetGoogleIdOption.Builder()
+            .setFilterByAuthorizedAccounts(false)
+            .setServerClientId(getString(R.string.default_web_client_id))
+            .build()
+
+        val request = GetCredentialRequest.Builder()
+            .addCredentialOption(googleIdOption)
+            .build()
+
+        lifecycleScope.launch {
+            try {
+                val result: GetCredentialResponse = credentialManager.getCredential(
+                    request = request,
+                    context = this@LoginActivity,
+                )
+                handleSignIn(result)
+            } catch (e: GetCredentialException) {
+                Log.d("Error", e.message.toString())
+                showLoading(false)
+            }
+        }
+    }
+
+    private fun handleSignIn(result: GetCredentialResponse) {
+        when (val credential = result.credential) {
+            is CustomCredential -> {
+                if (credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
+                    try {
+                        val googleIdTokenCredential =
+                            GoogleIdTokenCredential.createFrom(credential.data)
+                        firebaseAuthWithGoogle(googleIdTokenCredential.idToken)
+                    } catch (e: GoogleIdTokenParsingException) {
+                        Log.e(TAG, "Received an invalid google id token response", e)
+                        showLoading(false)
+                    }
+                } else {
+                    Log.e(TAG, "Unexpected type of credential")
+                    showLoading(false)
+                }
+            }
+
+            else -> {
+                Log.e(TAG, "Unexpected type of credential")
+            }
+        }
+    }
+
+
     private fun loginUser(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
@@ -163,22 +212,6 @@ class LoginActivity : AppCompatActivity() {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
-            showLoading(true)
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                val account = task.getResult(ApiException::class.java)!!
-                firebaseAuthWithGoogle(account.idToken!!)
-            } catch (e: ApiException) {
-                showLoading(false)
-                Toast.makeText(this, "Google sign in failed: ${e.statusCode}", Toast.LENGTH_LONG)
-                    .show()
-            }
-        }
-    }
-
     private fun animateTextViews() {
         binding.textView.animate().alpha(1f).setDuration(1000).setStartDelay(500)
         binding.textView2.animate().alpha(1f).setDuration(1000).setStartDelay(700)
@@ -196,9 +229,5 @@ class LoginActivity : AppCompatActivity() {
         binding.iconReoil.animate().alpha(1f).setDuration(1000).setStartDelay(3100)
         binding.textView3.animate().alpha(1f).setDuration(1000).setStartDelay(3300)
         binding.tvRegister.animate().alpha(1f).setDuration(1000).setStartDelay(3500)
-    }
-
-    companion object {
-        private const val RC_SIGN_IN = 9001
     }
 }
