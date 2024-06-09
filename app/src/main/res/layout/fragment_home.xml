@@ -12,6 +12,20 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/user_icon_settings"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.909" />
+
         <TextView
             android:id="@+id/TitleHome"
             android:layout_width="wrap_content"
@@ -26,6 +40,18 @@
             app:layout_constraintTop_toTopOf="@+id/imageView" />
 
         <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="360dp"
+            android:layout_height="361dp"
+            android:layout_marginTop="72dp"
+            android:contentDescription="@string/outline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/list_home" />
+
+        <ImageView
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,29 +64,6 @@
             app:layout_constraintVertical_bias="0.823"
             app:srcCompat="@drawable/imghome_asset" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_image"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/user_icon_settings"
-            app:layout_constraintBottom_toTopOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.909" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="360dp"
-            android:layout_height="361dp"
-            android:layout_marginTop="72dp"
-            android:contentDescription="@string/outline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.484"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/list_home" />
 
         <TextView
             android:id="@+id/SubTitleHome"
@@ -137,7 +140,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/notification_icon"
-            android:src="@drawable/baseline_notifications_24"
+            android:src="@drawable/notification_icon"
             app:layout_constraintBottom_toTopOf="@+id/tv_viewAll"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.93"
