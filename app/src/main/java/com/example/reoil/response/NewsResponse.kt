@@ -1,6 +1,8 @@
 package com.example.reoil.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class NewsResponse(
 
@@ -50,6 +52,7 @@ data class Nzn2Pa6C9MOgr5VSIF(
 	val content: String? = null
 )
 
+@Parcelize
 data class NewsItem(
 	@SerializedName("imageurl")
 	val imageUrl: String? = null,
@@ -59,5 +62,5 @@ data class NewsItem(
 
 	@SerializedName("content")
 	val content: String? = null
-)
+): Parcelable
 

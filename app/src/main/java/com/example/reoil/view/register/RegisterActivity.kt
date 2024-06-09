@@ -98,7 +98,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     AlertDialog.Builder(this).apply {
                         setTitle("Yeah!")
-                        setMessage("Akun dengan $email sudah jadi nih. Yuk, ubah minyak kotormu jadi uang.")
+                        setMessage("Akun dengan $email sudah jadi nih. Yuk, lengkapi user profile terlebih dahulu.")
                         setPositiveButton("Lanjut") { _, _ ->
                             finish()
                         }

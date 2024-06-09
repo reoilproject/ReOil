@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.reoil.databinding.ActivityDetailNewsBinding
+import com.example.reoil.response.NewsItem
 
 class DetailNewsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailNewsBinding
@@ -15,17 +17,21 @@ class DetailNewsActivity : AppCompatActivity() {
         binding = ActivityDetailNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val title = intent.getStringExtra("EXTRA_TITLE")
-        val description = intent.getStringExtra("EXTRA_DESCRIPTION")
-        val date = intent.getStringExtra("EXTRA_DATE")
-        val imageId = intent.getIntExtra("EXTRA_IMAGE_ID", 0)
-
-        binding.ivDetailPhoto.setImageResource(imageId)
-        binding.tvDetailName.text = title
-        binding.tvDetailDescription.text = description
-        binding.textViewDesc.text = date
-        setupView()
+        val newsItem = intent.getParcelableExtra<NewsItem>("NEWS_ITEM")
+        newsItem?.let {
+            showDetails(it)
+            setupView()
+        }
     }
+
+    private fun showDetails(newsItem: NewsItem) {
+        Glide.with(this)
+            .load(newsItem.imageUrl)
+            .into(binding.ivDetailPhoto)
+        binding.tvDetailName.text = newsItem.title
+        binding.tvDetailDescription.text = newsItem.content
+    }
+
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -38,4 +44,5 @@ class DetailNewsActivity : AppCompatActivity() {
         }
         supportActionBar?.hide()
     }
+
 }

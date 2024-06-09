@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.reoil.databinding.ItemRowNewsBinding
 import com.example.reoil.response.NewsItem
 
-class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter(private val onClick: (NewsItem) -> Unit) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     private var newsList = listOf<NewsItem>()
 
     fun setNewsList(newsList: List<NewsItem>) {
@@ -17,7 +17,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val binding = ItemRowNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return NewsViewHolder(binding)
+        return NewsViewHolder(binding, onClick)
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
@@ -26,16 +26,19 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     override fun getItemCount(): Int = newsList.size
 
-    class NewsViewHolder(private val binding: ItemRowNewsBinding) : RecyclerView.ViewHolder(binding.root) {
+    class NewsViewHolder(private val binding: ItemRowNewsBinding, private val onClick: (NewsItem) -> Unit) : RecyclerView.ViewHolder(binding.root) {
         fun bind(newsItem: NewsItem) {
             binding.apply {
                 tvItemName.text = newsItem.title
                 tvItemFrom.text = newsItem.content
-                // Load image using Glide or another library
                 Glide.with(imgItemPhoto.context)
                     .load(newsItem.imageUrl)
                     .into(imgItemPhoto)
+                root.setOnClickListener {
+                    onClick(newsItem)
+                }
             }
         }
     }
 }
+

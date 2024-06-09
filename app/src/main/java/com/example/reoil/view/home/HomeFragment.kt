@@ -6,16 +6,20 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.reoil.R
-import com.example.reoil.customview.CustomPageTransformer
+import com.example.reoil.api.ApiConfig
 import com.example.reoil.databinding.FragmentHomeBinding
 import com.example.reoil.main.UserViewModel
+import com.example.reoil.response.NewsItem
+import com.example.reoil.view.detail.DetailNewsActivity
 import com.example.reoil.view.news.NewsActivity
 import com.example.reoil.view.notification.NotificationActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeFragment : Fragment() {
 
@@ -61,21 +65,32 @@ class HomeFragment : Fragment() {
     }
 
     private fun initCarousel() {
-        val imageList = ArrayList<Int>()
-        repeat(8) { imageList.add(R.drawable.carousel_img) }
+        ApiConfig.getApiService().getNews().enqueue(object : Callback<Map<String, NewsItem>> {
+            override fun onResponse(call: Call<Map<String, NewsItem>>, response: Response<Map<String, NewsItem>>) {
+                if (response.isSuccessful) {
+                    val newsItems = response.body()?.values?.toList() ?: emptyList()
+                    adapter = CarouselAdapter(newsItems) { newsItem ->
+                        val intent = Intent(context, DetailNewsActivity::class.java)
+                        intent.putExtra("NEWS_ITEM", newsItem)
+                        startActivity(intent)
+                    }
+                    binding.viewPager2.adapter = adapter
+                } else {
+                    showError(response.message())
+                }
+            }
 
-        adapter = CarouselAdapter(imageList, binding.viewPager2)
-        binding.viewPager2.apply {
-            adapter = this@HomeFragment.adapter
-            offscreenPageLimit = 3
-            clipToPadding = true
-            clipChildren = true
-            getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-
-            setPageTransformer(CustomPageTransformer())
-        }
+            override fun onFailure(call: Call<Map<String, NewsItem>>, t: Throwable) {
+                showError(t.message ?: "An error occurred")
+            }
+        })
         setupAutoScroll()
     }
+
+    private fun showError(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    }
+
 
     private fun setupAutoScroll() {
         handler = Handler()

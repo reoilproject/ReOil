@@ -96,6 +96,10 @@
     <string name="btWhatsApp">WhatsApp</string>
     <string name="guideButtonWA">You will be directed to a map with the collector\'s number to chat.</string>
     <string name="tokoPengepul">BMJ - Berkah Minyak Jelantah</string>
+    <string name="InputImage">Upload your Photo Profile</string>
+    <string name="form_username">Input your username</string>
+    <string name="form_phone">Input your number phone</string>
+    <string name="form_address">Input your address</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>
