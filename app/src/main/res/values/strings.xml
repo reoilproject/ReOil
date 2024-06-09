@@ -100,6 +100,7 @@
     <string name="form_username">Input your username</string>
     <string name="form_phone">Input your number phone</string>
     <string name="form_address">Input your address</string>
+    <string name="titleNewsDetail">News Detail</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>

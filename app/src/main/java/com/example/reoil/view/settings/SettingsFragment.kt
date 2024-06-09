@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.reoil.databinding.FragmentSettingsBinding
 import com.example.reoil.utils.PreferencesHelper
 import com.example.reoil.view.login.LoginActivity
+import com.example.reoil.view.map.MapActivity
 import com.example.reoil.view.map.MapFragment
 import com.example.reoil.view.notification.NotificationActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -43,7 +44,7 @@ class SettingsFragment : Fragment() {
         }
 
         binding.containerLocation.setOnClickListener {
-            val intent = Intent(context, MapFragment::class.java)
+            val intent = Intent(context, MapActivity::class.java)
             startActivity(intent)
         }
 

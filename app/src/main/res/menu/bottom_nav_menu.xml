@@ -9,11 +9,7 @@
         android:icon="@drawable/scan_icon"
         android:title="Scan" />
     <item
-        android:id="@+id/map"
-        android:icon="@drawable/map_icon"
-        android:title="Map" />
-    <item
         android:id="@+id/user"
-        android:icon="@drawable/user_icon"
-        android:title="User" />
+        android:icon="@drawable/settings_icon"
+        android:title="Settings" />
 </menu>

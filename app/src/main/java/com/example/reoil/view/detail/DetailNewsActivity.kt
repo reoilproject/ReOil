@@ -17,6 +17,10 @@ class DetailNewsActivity : AppCompatActivity() {
         binding = ActivityDetailNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.backButton.setOnClickListener{
+            onBackPressed()
+        }
+
         val newsItem = intent.getParcelableExtra<NewsItem>("NEWS_ITEM")
         newsItem?.let {
             showDetails(it)

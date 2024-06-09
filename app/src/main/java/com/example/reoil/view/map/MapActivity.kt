@@ -16,9 +16,10 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
-class MapActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapBinding
@@ -28,6 +29,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.backButton.setOnClickListener{
+            onBackPressed()
+        }
 
 
         val mapFragment = supportFragmentManager
@@ -50,41 +55,59 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             .build()
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
 
-        // Add a marker (optional)
-        val markerOptions = MarkerOptions()
-            .position(LatLng(-7.983908, 112.621391))
-            .title("Malang")
-            .snippet("This is Malang, Indonesia")
-        mMap.addMarker(markerOptions)
+        // Add three markers
+        val marker1 = mMap.addMarker(
+            MarkerOptions()
+                .position(LatLng(-7.983908, 112.621391))
+                .title("Warung Pamungkas")
+        )
+        val marker2 = mMap.addMarker(
+            MarkerOptions()
+                .position(LatLng(-7.983500, 112.623000))
+                .title("Warung Adam")
+        )
+        val marker3 = mMap.addMarker(
+            MarkerOptions()
+                .position(LatLng(-7.984000, 112.624000))
+                .title("Warung Amru")
+        )
 
         // Enable/disable various map features (optional)
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.uiSettings.isCompassEnabled = true
         mMap.uiSettings.isMyLocationButtonEnabled = true
+
+        mMap.setOnMarkerClickListener(this)
     }
-        private fun setupView() {
-            @Suppress("DEPRECATION")
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                window.insetsController?.hide(WindowInsets.Type.statusBars())
-            } else {
-                window.setFlags(
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN
-                )
-            }
-            binding.btWhatsApp.setOnClickListener {
-                    val phoneNumber = "+1234567890" // Replace with the phone number you want to use
-                    val message = "Hello, this is a test message!" // Replace with the message you want to send
 
-                    val uri = Uri.parse("https://api.whatsapp.com/send?phone=$phoneNumber&text=$message")
-                    val intent = Intent(Intent.ACTION_VIEW, uri)
+    override fun onMarkerClick(marker: Marker): Boolean {
+        binding.tvPengepul.text = marker.title
+        return true
+    }
 
-                    if (intent.resolveActivity(packageManager) != null) {
-                        startActivity(intent)
-                    } else {
-                        Toast.makeText(this, "WhatsApp not installed", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            supportActionBar?.hide()
+    private fun setupView() {
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
         }
+        binding.btWhatsApp.setOnClickListener {
+            val phoneNumber = "+1234567890" // Replace with the phone number you want to use
+            val message = "Hello, this is a test message!" // Replace with the message you want to send
+
+            val uri = Uri.parse("https://api.whatsapp.com/send?phone=$phoneNumber&text=$message")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+
+            if (intent.resolveActivity(packageManager)!= null) {
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "WhatsApp not installed", Toast.LENGTH_SHORT).show()
+            }
+        }
+        supportActionBar?.hide()
     }
+}
