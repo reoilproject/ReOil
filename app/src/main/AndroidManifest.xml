@@ -48,6 +48,9 @@
             android:name=".view.register.RegisterActivity"
             android:exported="false" />
         <activity
+            android:name=".view.map.MapActivity"
+            android:exported="false" />
+        <activity
             android:name=".main.SplashScreen"
             android:exported="true">
             <intent-filter>
@@ -57,6 +60,10 @@
             </intent-filter>
         </activity> <!-- MainActivity -->
         <activity android:name=".main.MainActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAFdEagkouJgFRvSILGDAJZryQuDkBYZko" />
     </application>
 
 </manifest>

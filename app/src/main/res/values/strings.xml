@@ -93,6 +93,9 @@
     <string name="map">Map</string>
     <string name="content_news">Description News</string>
     <string name="title_news">Title News</string>
+    <string name="btWhatsApp">WhatsApp</string>
+    <string name="guideButtonWA">You will be directed to a map with the collector\'s number to chat.</string>
+    <string name="tokoPengepul">BMJ - Berkah Minyak Jelantah</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>

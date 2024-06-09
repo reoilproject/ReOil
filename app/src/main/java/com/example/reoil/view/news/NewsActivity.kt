@@ -20,6 +20,9 @@ class NewsActivity : AppCompatActivity() {
         binding = ActivityNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+        }
         setupRecyclerView()
         loadNews()
     }

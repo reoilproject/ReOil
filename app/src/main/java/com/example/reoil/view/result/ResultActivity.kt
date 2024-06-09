@@ -10,6 +10,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.reoil.databinding.ActivityResultBinding
 import com.example.reoil.main.MainActivity
+import com.example.reoil.view.map.MapActivity
 
 class ResultActivity : AppCompatActivity() {
 
@@ -33,6 +34,11 @@ class ResultActivity : AppCompatActivity() {
             }
             binding.backButton.setOnClickListener {
                 onBackPressed()
+            }
+
+            binding.btTrade.setOnClickListener{
+                val intent = Intent(this, MapActivity::class.java)
+                startActivity(intent)
             }
             setupView()
         }

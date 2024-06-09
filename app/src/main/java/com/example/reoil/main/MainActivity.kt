@@ -34,10 +34,14 @@ class MainActivity : AppCompatActivity() {
         preferencesHelper = PreferencesHelper(this)
 
         val user = auth.currentUser
+        val defaultDrawable = resources.getDrawable(R.drawable.user_icon, theme)
 
         if (user != null) {
             userViewModel.username = "Welcome, ${user.displayName}"
             userViewModel.photoUrl = user.photoUrl.toString()
+        } else {
+            userViewModel.username = "Welcome, Username!"
+            userViewModel.photoUrl = defaultDrawable.toString()
         }
 
         val homeFragment = HomeFragment()
@@ -58,7 +62,6 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
-
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -71,14 +74,12 @@ class MainActivity : AppCompatActivity() {
         }
         supportActionBar?.hide()
     }
-
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
     }
-
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser

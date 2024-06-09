@@ -33,7 +33,7 @@
             android:id="@+id/btn_camera"
             android:layout_width="159dp"
             android:layout_height="39dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="68dp"
             android:backgroundTint="@color/green"
             android:fontFamily="@font/montserrat_semibold"
             android:text="@string/camera"
@@ -60,9 +60,9 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="275dp"
-            android:layout_height="275dp"
-            android:layout_marginTop="30dp"
+            android:layout_width="169dp"
+            android:layout_height="169dp"
+            android:layout_marginTop="88dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_titleScan"
