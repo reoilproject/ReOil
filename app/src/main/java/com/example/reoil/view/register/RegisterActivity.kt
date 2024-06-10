@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.reoil.R
 import com.example.reoil.databinding.ActivityRegisterBinding
+import com.example.reoil.view.form.FormProfileActivity
 import com.example.reoil.view.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -96,11 +97,13 @@ class RegisterActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    val intent = Intent(this, FormProfileActivity::class.java)
+                    startActivity(intent)
+                    finish()
                     AlertDialog.Builder(this).apply {
                         setTitle("Yeah!")
                         setMessage("Akun dengan $email sudah jadi nih. Yuk, lengkapi user profile terlebih dahulu.")
                         setPositiveButton("Lanjut") { _, _ ->
-                            finish()
                         }
                         create()
                         show()
@@ -114,6 +117,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
     }
+
 
     private fun animateTextViews() {
         binding.titleTextView.animate().alpha(1f).setDuration(1000).setStartDelay(500)
