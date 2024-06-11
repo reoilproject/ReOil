@@ -8,11 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.example.reoil.R
 import com.example.reoil.api.ApiConfig
 import com.example.reoil.databinding.FragmentHomeBinding
-import com.example.reoil.main.UserViewModel
 import com.example.reoil.response.NewsItem
 import com.example.reoil.view.detail.DetailNewsActivity
 import com.example.reoil.view.news.NewsActivity
@@ -24,18 +24,17 @@ import retrofit2.Response
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
+    private val userViewModel: HomeViewModele by viewModels()
     private val binding get() = _binding!!
 
     private lateinit var adapter: CarouselAdapter
     private lateinit var handler: Handler
     private lateinit var runnable: Runnable
 
-    private val userViewModel: UserViewModel by activityViewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -43,13 +42,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userViewModel.username?.let {
-            binding.tvName.text = it
+        userViewModel.userProfile.observe(viewLifecycleOwner) { profile ->
+            binding.tvName.text = getString(R.string.welcome_user, profile?.username ?: "user")
+            profile?.imageUrl?.let { imageUrl ->
+                Glide.with(this).load(imageUrl).into(binding.ivImage)
+            }
         }
 
-        userViewModel.photoUrl?.let {
-            Glide.with(this).load(it).into(binding.ivImage)
-        }
+        userViewModel.loadUserProfile()
 
         binding.btnNotification.setOnClickListener {
             val intent = Intent(context, NotificationActivity::class.java)
@@ -95,7 +95,7 @@ class HomeFragment : Fragment() {
     private fun setupAutoScroll() {
         handler = Handler()
         runnable = Runnable {
-            binding?.let {
+            binding.let {
                 val currentItem = it.viewPager2.currentItem
                 val itemCount = adapter.itemCount
                 it.viewPager2.currentItem = (currentItem + 1) % itemCount

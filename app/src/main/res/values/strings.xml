@@ -48,7 +48,6 @@
     <string name="SubTitleMain">From save the world</string>
     <string name="titleNews">News for you!</string>
     <string name="tv_viewAll">View all</string>
-    <string name="welcome_user">Welcome, User!</string>
     <string name="outline">outline</string>
     <string name="home_asset">home_asset</string>
     <string name="notification">Notification</string>
@@ -106,6 +105,7 @@
     <string name="harga_update">Rp. 5,000/Liter</string>
     <string name="totalSaldo">1,000,000</string>
     <string name="namaWarung">Mitra Warung Pamungkas</string>
+    <string name="welcome_user">Welcome, %1$s</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>
