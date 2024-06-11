@@ -99,6 +99,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
         if (marker1 != null) {
             marker1.tag = "+6281234567890"
         }
+
         val marker2 = mMap.addMarker(
             MarkerOptions()
                 .position(LatLng(-7.983500, 112.623000))
@@ -108,6 +109,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
             if (marker2 != null) {
                 marker2.tag = "+6281381641530"
             }
+
         val marker3 = mMap.addMarker(
             MarkerOptions()
                 .position(LatLng(-7.984000, 112.624000))
