@@ -159,18 +159,6 @@
         app:layout_constraintTop_toTopOf="@+id/loginGoogle"
         app:srcCompat="@drawable/ic_google" />
 
-    <ImageView
-        android:id="@+id/iconReoil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:alpha="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginGoogle"
-        app:srcCompat="@drawable/reoil_icon_textgreen" />
-
     <TextView
         android:id="@+id/tv_register"
         android:layout_width="wrap_content"

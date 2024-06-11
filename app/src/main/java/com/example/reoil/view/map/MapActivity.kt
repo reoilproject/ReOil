@@ -1,7 +1,5 @@
 package com.example.reoil.view.map
 
-import android.Manifest
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
@@ -16,13 +14,9 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.reoil.R
 import com.example.reoil.databinding.ActivityMapBinding
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.places.Place
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -34,62 +28,34 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-
 class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
-
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapBinding
     private var selectedMarker: Marker? = null
-    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.backButton.setOnClickListener{
             onBackPressed()
         }
-
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-
-
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
         setupView()
     }
-
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
         // Set the map type (e.g. normal, satellite, hybrid)
         mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
-
         // Set the camera position (e.g. zoom level, latitude, longitude)
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
-        }
-        fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
-            if (location != null) {
-                val latLng = LatLng(location.latitude, location.longitude)
-                val cameraPosition = CameraPosition.builder()
-                    .target(latLng)
-                    .zoom(12f)
-                    .build()
-                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
-            }
-        }
-
+        val cameraPosition = CameraPosition.builder()
+            .target(LatLng(-7.983908, 112.621391)) // Malang, Indonesia
+            .zoom(12f)
+            .build()
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+        // Add three markers
         val marker1 = mMap.addMarker(
             MarkerOptions()
                 .position(LatLng(-7.983908, 112.621391))
@@ -106,9 +72,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
                 .title("Warung Adam")
                 .icon(resizeIcon(R.drawable.logo_reoil, 100, 100))
         )
-            if (marker2 != null) {
-                marker2.tag = "+6281381641530"
-            }
+        if (marker2 != null) {
+            marker2.tag = "+6281381641530"
+        }
 
         val marker3 = mMap.addMarker(
             MarkerOptions()
@@ -129,6 +95,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
                 .title("Warung Amel")
                 .icon(resizeIcon(R.drawable.logo_reoil, 100, 100))
         )
+        if (marker5 != null) {
+            marker5.tag = "+6281338491334"
+        }
         val marker6 = mMap.addMarker(
             MarkerOptions()
                 .position(LatLng(-7.980000, 112.618000))
@@ -142,6 +111,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
                 .icon(resizeIcon(R.drawable.logo_reoil, 100, 100))
         )
 
+        // Enable/disable various map features (optional)
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.uiSettings.isCompassEnabled = true
         mMap.uiSettings.isMyLocationButtonEnabled = true
@@ -150,8 +120,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
         getMyLocation()
         setMapStyle()
     }
-
-
 
     fun resizeIcon(iconId: Int, width: Int, height: Int): BitmapDescriptor {
         val bitmap = BitmapFactory.decodeResource(resources, iconId)

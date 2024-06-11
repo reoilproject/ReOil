@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.Toast
@@ -45,11 +44,6 @@ class LoginActivity : AppCompatActivity() {
         binding.loginGoogle.setOnClickListener {
             signIn()
         }
-
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
 
         animateTextViews()
 
@@ -226,8 +220,7 @@ class LoginActivity : AppCompatActivity() {
         binding.textViewOr.animate().alpha(1f).setDuration(1000).setStartDelay(2500)
         binding.loginGoogle.animate().alpha(1f).setDuration(1000).setStartDelay(2700)
         binding.logoGoogle.animate().alpha(1f).setDuration(1000).setStartDelay(2900)
-        binding.iconReoil.animate().alpha(1f).setDuration(1000).setStartDelay(3100)
-        binding.textView3.animate().alpha(1f).setDuration(1000).setStartDelay(3300)
-        binding.tvRegister.animate().alpha(1f).setDuration(1000).setStartDelay(3500)
+        binding.textView3.animate().alpha(1f).setDuration(1000).setStartDelay(3100)
+        binding.tvRegister.animate().alpha(1f).setDuration(1000).setStartDelay(3400)
     }
 }
