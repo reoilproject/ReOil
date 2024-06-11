@@ -101,6 +101,11 @@
     <string name="form_phone">Input your number phone</string>
     <string name="form_address">Input your address</string>
     <string name="titleNewsDetail">News Detail</string>
+    <string name="welcome_partner">Welcome, Warung Pamungkas!</string>
+    <string name="account">Partner Account</string>
+    <string name="harga_update">Rp. 5,000/Liter</string>
+    <string name="totalSaldo">1,000,000</string>
+    <string name="namaWarung">Mitra Warung Pamungkas</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>

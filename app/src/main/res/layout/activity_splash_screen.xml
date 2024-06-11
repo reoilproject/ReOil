@@ -19,7 +19,7 @@
         android:id="@+id/github_icon_text"
         android:layout_width="183dp"
         android:layout_height="48dp"
-        android:src="@drawable/reoil_textimg"
+        android:src="@drawable/reoil_textlogo"
         android:layout_marginTop="42dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -1,6 +1,8 @@
 package com.example.reoil.view.map
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -14,6 +16,8 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
@@ -60,16 +64,19 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
             MarkerOptions()
                 .position(LatLng(-7.983908, 112.621391))
                 .title("Warung Pamungkas")
+                .icon(resizeIcon(R.drawable.logo_reoil, 100, 100))
         )
         val marker2 = mMap.addMarker(
             MarkerOptions()
                 .position(LatLng(-7.983500, 112.623000))
                 .title("Warung Adam")
+                .icon(resizeIcon(R.drawable.logo_reoil, 100, 100))
         )
         val marker3 = mMap.addMarker(
             MarkerOptions()
                 .position(LatLng(-7.984000, 112.624000))
                 .title("Warung Amru")
+                .icon(resizeIcon(R.drawable.logo_reoil, 100, 100))
         )
 
         // Enable/disable various map features (optional)
@@ -78,6 +85,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
         mMap.uiSettings.isMyLocationButtonEnabled = true
 
         mMap.setOnMarkerClickListener(this)
+    }
+
+    fun resizeIcon(iconId: Int, width: Int, height: Int): BitmapDescriptor {
+        val bitmap = BitmapFactory.decodeResource(resources, iconId)
+        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, width, height, false)
+        return BitmapDescriptorFactory.fromBitmap(resizedBitmap)
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {

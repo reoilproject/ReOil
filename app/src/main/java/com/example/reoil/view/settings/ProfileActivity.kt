@@ -16,6 +16,7 @@ import com.example.reoil.data.DefaultUserProfile
 import com.example.reoil.data.UserProfile
 import com.example.reoil.databinding.ActivityProfileBinding
 import com.example.reoil.main.MainActivity
+import com.example.reoil.utils.PreferencesHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -30,6 +31,7 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var storage: FirebaseStorage
     private var imageUrl: String? = null
+    private lateinit var preferencesHelper: PreferencesHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,10 +41,13 @@ class ProfileActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance(BuildConfig.API_URL)
         storage = FirebaseStorage.getInstance()
+        preferencesHelper = PreferencesHelper(this)
 
         binding.btBack.setOnClickListener {
             onBackPressed()
         }
+
+        binding.usernameProfile.hint = preferencesHelper.getUsername()
 
         binding.btnGallery.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)

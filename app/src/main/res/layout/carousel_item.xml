@@ -26,6 +26,12 @@
             android:scaleType="fitXY"
             android:src="@drawable/ic_launcher_background" />
 
+        <ImageView
+            android:layout_width="412dp"
+            android:alpha="0.2"
+            android:layout_height="match_parent"
+            android:background="@color/black" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"

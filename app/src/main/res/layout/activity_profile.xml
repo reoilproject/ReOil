@@ -10,7 +10,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pp_edit"
-        android:layout_width="97dp"
+        android:layout_width="92dp"
         android:layout_height="92dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/profilepicture"
@@ -92,7 +92,6 @@
         android:background="@drawable/bg_edit_text_profile"
         android:drawableStart="@drawable/ic_baseline_person_24"
         android:drawablePadding="10dp"
-        android:hint="@string/nameProfile"
         android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"

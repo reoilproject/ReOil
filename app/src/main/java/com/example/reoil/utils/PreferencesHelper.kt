@@ -10,6 +10,7 @@ class PreferencesHelper(context: Context) {
     companion object {
         private const val PREFS_NAME = "loginPrefs"
         private const val IS_LOGGED_IN = "isLoggedIn"
+        private const val USERNAME = "username"
     }
 
     fun setLoginStatus(isLoggedIn: Boolean) {
@@ -27,4 +28,13 @@ class PreferencesHelper(context: Context) {
         editor.remove(IS_LOGGED_IN)
         editor.apply()
     }
-}
+
+    fun setUsername(username: String) {
+        val editor = preferences.edit()
+        editor.putString(USERNAME, username)
+        editor.apply()
+        }
+    fun getUsername(): String? {
+        return preferences.getString(USERNAME, null)
+        }
+    }
