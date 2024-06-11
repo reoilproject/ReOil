@@ -95,7 +95,7 @@
     <string name="title_news">Title News</string>
     <string name="btWhatsApp">WhatsApp</string>
     <string name="guideButtonWA">You will be directed to a map with the collector\'s number to chat.</string>
-    <string name="tokoPengepul">BMJ - Berkah Minyak Jelantah</string>
+    <string name="tokoPengepul">Choose location first!</string>
     <string name="InputImage">Upload your Photo Profile</string>
     <string name="form_username">Input your username</string>
     <string name="form_phone">Input your number phone</string>
@@ -114,33 +114,6 @@
     <string-array name="description_notif">
         <item>You get 250 points from your redemption</item>
         <item>You\'ve been enlisted for world change</item>
-    </string-array>
-
-    <string-array name="image_news">
-        <item>drawable/carousel_img.jpg</item>
-        <item>drawable/carousel_img.jpg</item>
-    </string-array>
-    <string-array name="title_news">
-        <item>the impact of used cooking oil on the environment</item>
-        <item>the impact of used cooking oil on the environment</item>
-    </string-array>
-    <string-array name="date_news">
-        <item>05 Jun 2024 | 19:55</item>
-        <item>05 Jun 2024 | 19:55</item>
-    </string-array>
-    <string-array name="description_news">
-        <item>Used cooking oil, if not disposed of properly, can have significant environmental impacts.
-            When poured down drains, it can lead to severe blockages in sewage systems, causing overflows and
-            contamination of local water bodies. Additionally, this waste oil can be repurposed into biodiesel,
-            offering a sustainable energy source that helps reduce reliance on fossil fuels and decrease
-            greenhouse gas emissions. Therefore, the proper recycling and disposal of used cooking oil are
-            crucial for protecting our environment and promoting sustainable practices.</item>
-        <item>Used cooking oil, if not disposed of properly, can have significant environmental impacts.
-            When poured down drains, it can lead to severe blockages in sewage systems, causing overflows and
-            contamination of local water bodies. Additionally, this waste oil can be repurposed into biodiesel,
-            offering a sustainable energy source that helps reduce reliance on fossil fuels and decrease
-            greenhouse gas emissions. Therefore, the proper recycling and disposal of used cooking oil are
-            crucial for protecting our environment and promoting sustainable practices.</item>
     </string-array>
 
 </resources>

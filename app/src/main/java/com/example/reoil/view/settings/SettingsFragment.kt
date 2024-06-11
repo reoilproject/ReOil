@@ -1,16 +1,19 @@
 package com.example.reoil.view.settings
 
+import android.animation.Animator
+import android.animation.AnimatorInflater
+import android.animation.AnimatorListenerAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.reoil.R
 import com.example.reoil.databinding.FragmentSettingsBinding
 import com.example.reoil.utils.PreferencesHelper
 import com.example.reoil.view.login.LoginActivity
 import com.example.reoil.view.map.MapActivity
-import com.example.reoil.view.map.MapFragment
 import com.example.reoil.view.notification.NotificationActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -44,13 +47,27 @@ class SettingsFragment : Fragment() {
         }
 
         binding.containerLocation.setOnClickListener {
-            val intent = Intent(context, MapActivity::class.java)
-            startActivity(intent)
+            // Menampilkan imageViewProgress
+            binding.imageViewProgress.visibility = View.VISIBLE
+
+            // Memulai animasi bounce pada imageViewProgress
+            val animator = AnimatorInflater.loadAnimator(context, R.animator.bounce_progress) as Animator
+            animator.setTarget(binding.imageViewProgress)  // Menargetkan imageViewProgress untuk animasi
+            animator.start()  // Memulai animasi
+
+            animator.addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    val intent = Intent(context, MapActivity::class.java)
+                    startActivity(intent)
+                    binding.imageViewProgress.visibility = View.GONE
+                }
+            })
         }
 
         binding.containerLogout.setOnClickListener {
             logout()
         }
+
     }
 
     private fun logout() {
