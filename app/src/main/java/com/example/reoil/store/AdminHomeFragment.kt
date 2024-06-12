@@ -1,12 +1,14 @@
 package com.example.reoil.store
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
@@ -20,6 +22,7 @@ import com.example.reoil.view.home.CarouselAdapter
 import com.example.reoil.view.home.HomeViewModele
 import com.example.reoil.view.news.NewsActivity
 import com.example.reoil.view.notification.NotificationActivity
+import com.google.android.gms.maps.model.Marker
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,11 +61,24 @@ class AdminHomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.btnTrade.setOnClickListener {
+            val whatsappNumber = "+6281338491334"
+            val whatsappMessage = "Halo, Reoil! Saya ingin menukar minyak jelantah saya. Berikut adalah detailnya:\n" +
+                    "\n" +
+                    "Nama Toko: Toko Sumber Makmur\n" +
+                    "Jumlah Minyak Jelantah: 20 Liter\n" +
+                    "\n" +
+                    "Terima kasih!"
+            val whatsappUrl = "https://wa.me/$whatsappNumber?text=$whatsappMessage"
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(whatsappUrl)
+            startActivity(intent)
+        }
+
         binding.tvViewAll.setOnClickListener {
             val intent = Intent(context, NewsActivity::class.java)
             startActivity(intent)
         }
-
         initCarousel()
     }
 
