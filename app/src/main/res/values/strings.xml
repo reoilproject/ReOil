@@ -118,6 +118,10 @@
     <string name="history">History</string>
     <string name="subTitleLoginAdmin">Login to your partner account</string>
     <string name="UserLogin">Login as a user</string>
+    <string name="title_status">Trade Completed</string>
+    <string name="jumlah_liter" />
+    <string name="jumlahLiter">20 Liter</string>
+    <string name="Harga">Rp, 100.000</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>

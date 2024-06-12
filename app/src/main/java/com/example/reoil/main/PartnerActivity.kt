@@ -14,9 +14,6 @@ import com.example.reoil.store.AdminHistoryFragment
 import com.example.reoil.store.AdminHomeFragment
 import com.example.reoil.store.AdminLoginActivity
 import com.example.reoil.utils.PreferencesHelper
-import com.example.reoil.view.home.HomeFragment
-import com.example.reoil.view.login.LoginActivity
-import com.example.reoil.view.scan.ScanFragment
 import com.example.reoil.view.settings.SettingsFragment
 import com.google.firebase.auth.FirebaseAuth
 
