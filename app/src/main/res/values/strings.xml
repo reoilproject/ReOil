@@ -106,6 +106,18 @@
     <string name="totalSaldo">1,000,000</string>
     <string name="namaWarung">Mitra Warung Pamungkas</string>
     <string name="welcome_user">Welcome, %1$s</string>
+    <string name="aboutus">About Us</string>
+    <string name="ourMission">Our Mission</string>
+    <string name="welcometoReoil">Welcome to Reoil!</string>
+    <string name="descWelcome">The innovative application dedicated to transforming used cooking oil into valuable rewards. At ReOil, we are committed to promoting sustainable practices by providing an easy and rewarding way to recycle used cooking oil. Our mission is to make recycling accessible and beneficial for everyone, ensuring a cleaner environment and a healthier community.</string>
+    <string name="howItWorks">How it Works?</string>
+    <string name="title_aboutUs">About Us</string>
+    <string name="desc_aboutUscont">Take a Look About our App!</string>
+    <string name="partnerLogin">Partner Login</string>
+    <string name="askPartner">Logged in as a collector?</string>
+    <string name="history">History</string>
+    <string name="subTitleLoginAdmin">Login to your partner account</string>
+    <string name="UserLogin">Login as a user</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>

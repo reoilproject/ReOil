@@ -46,6 +46,11 @@ class SettingsFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.containerAboutus.setOnClickListener {
+            val intent = Intent(context, AboutUsActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.containerLocation.setOnClickListener {
             // Menampilkan imageViewProgress
             binding.imageViewProgress.visibility = View.VISIBLE

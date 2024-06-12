@@ -1,4 +1,4 @@
-package com.example.reoil.view.login
+package com.example.reoil.store
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -16,36 +16,30 @@ import androidx.credentials.GetCredentialResponse
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.lifecycle.lifecycleScope
 import com.example.reoil.R
-import com.example.reoil.databinding.ActivityLoginBinding
-import com.example.reoil.main.MainActivity
+import com.example.reoil.databinding.ActivityAdminLoginBinding
 import com.example.reoil.main.PartnerActivity
-import com.example.reoil.store.AdminLoginActivity
 import com.example.reoil.utils.PreferencesHelper
-import com.example.reoil.view.register.RegisterActivity
+import com.example.reoil.view.login.LoginActivity
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.launch
 
-class LoginActivity : AppCompatActivity() {
+
+class AdminLoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var binding: ActivityLoginBinding
+    private lateinit var binding: ActivityAdminLoginBinding
     private lateinit var preferencesHelper: PreferencesHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityAdminLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
         preferencesHelper = PreferencesHelper(this)
-
-        binding.loginGoogle.setOnClickListener {
-            signIn()
-        }
 
         animateTextViews()
 
@@ -67,15 +61,11 @@ class LoginActivity : AppCompatActivity() {
             loginUser(email, password)
         }
 
-        binding.tvRegister.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
+        binding.userLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
-        binding.btPartnerLogin.setOnClickListener {
-            val intent = Intent(this, AdminLoginActivity::class.java)
-            startActivity(intent)
-        }
 
         binding.tvForgotpassword.setOnClickListener {
             val animation = ScaleAnimation(
@@ -105,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
                     reverseAnimation.fillAfter = false
                     binding.tvForgotpassword.startAnimation(reverseAnimation)
 
-                    Toast.makeText(this@LoginActivity, "Coming soon!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AdminLoginActivity, "Coming soon!", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onAnimationRepeat(animation: Animation?) {
@@ -131,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
             try {
                 val result: GetCredentialResponse = credentialManager.getCredential(
                     request = request,
-                    context = this@LoginActivity,
+                    context = this@AdminLoginActivity,
                 )
                 handleSignIn(result)
             } catch (e: GetCredentialException) {
@@ -148,7 +138,6 @@ class LoginActivity : AppCompatActivity() {
                     try {
                         val googleIdTokenCredential =
                             GoogleIdTokenCredential.createFrom(credential.data)
-                        firebaseAuthWithGoogle(googleIdTokenCredential.idToken)
                     } catch (e: GoogleIdTokenParsingException) {
                         Log.e(TAG, "Received an invalid google id token response", e)
                         showLoading(false)
@@ -176,7 +165,7 @@ class LoginActivity : AppCompatActivity() {
                     } else {
                         preferencesHelper.clearLoginStatus()
                     }
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, PartnerActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
@@ -185,26 +174,6 @@ class LoginActivity : AppCompatActivity() {
                         "Login failed: ${task.exception?.message}",
                         Toast.LENGTH_SHORT
                     ).show()
-                }
-            }
-    }
-
-    private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                showLoading(false)
-                if (task.isSuccessful) {
-                    if (binding.checkBoxRememberMe.isChecked) {
-                        preferencesHelper.setLoginStatus(true)
-                    } else {
-                        preferencesHelper.clearLoginStatus()
-                    }
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show()
                 }
             }
     }
@@ -224,12 +193,6 @@ class LoginActivity : AppCompatActivity() {
         binding.textViewRememberMe.animate().alpha(1f).setDuration(1000).setStartDelay(1900)
         binding.tvForgotpassword.animate().alpha(1f).setDuration(1000).setStartDelay(2100)
         binding.buttonLogin.animate().alpha(1f).setDuration(1000).setStartDelay(2300)
-        binding.textViewOr.animate().alpha(1f).setDuration(1000).setStartDelay(2500)
-        binding.loginGoogle.animate().alpha(1f).setDuration(1000).setStartDelay(2700)
-        binding.logoGoogle.animate().alpha(1f).setDuration(1000).setStartDelay(2900)
-        binding.textView3.animate().alpha(1f).setDuration(1000).setStartDelay(3100)
-        binding.tvRegister.animate().alpha(1f).setDuration(1000).setStartDelay(3400)
-        binding.tvAskPartner.animate().alpha(1f).setDuration(1000).setStartDelay(3700)
-        binding.btPartnerLogin.animate().alpha(1f).setDuration(1000).setStartDelay(3900)
+        binding.userLogin.animate().alpha(1f).setDuration(1000).setStartDelay(2600)
     }
 }
