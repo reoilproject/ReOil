@@ -2,8 +2,6 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.ReOil" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="colorControlNormal">@color/gray</item>
-        <item name="android:textColorSecondary">@color/gray</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:actionBarStyle">@style/MyActionBar</item>

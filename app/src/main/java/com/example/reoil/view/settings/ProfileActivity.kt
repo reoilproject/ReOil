@@ -2,10 +2,7 @@ package com.example.reoil.view.settings
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.WindowInsets
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -72,7 +69,6 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         profileViewModel.loadUserProfile()
-        setupView()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -83,19 +79,6 @@ class ProfileActivity : AppCompatActivity() {
                 profileViewModel.uploadImage(uri)
             }
         }
-    }
-
-    private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
     }
 
     companion object {

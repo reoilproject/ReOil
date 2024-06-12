@@ -3,10 +3,7 @@ package com.example.reoil.view.result
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.view.WindowInsets
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.reoil.databinding.ActivityResultBinding
 import com.example.reoil.main.MainActivity
@@ -36,24 +33,10 @@ class ResultActivity : AppCompatActivity() {
                 onBackPressed()
             }
 
-            binding.btTrade.setOnClickListener{
+            binding.btTrade.setOnClickListener {
                 val intent = Intent(this, MapActivity::class.java)
                 startActivity(intent)
             }
-            setupView()
         }
     }
-
-            private fun setupView() {
-                @Suppress("DEPRECATION")
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    window.insetsController?.hide(WindowInsets.Type.statusBars())
-                } else {
-                    window.setFlags(
-                        WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                        WindowManager.LayoutParams.FLAG_FULLSCREEN
-                    )
-                }
-                supportActionBar?.hide()
-        }
-    }
+}

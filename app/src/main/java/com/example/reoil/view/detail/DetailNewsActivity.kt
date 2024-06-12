@@ -1,9 +1,6 @@
 package com.example.reoil.view.detail
 
-import android.os.Build
 import android.os.Bundle
-import android.view.WindowInsets
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.reoil.databinding.ActivityDetailNewsBinding
@@ -17,14 +14,13 @@ class DetailNewsActivity : AppCompatActivity() {
         binding = ActivityDetailNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.backButton.setOnClickListener{
+        binding.backButton.setOnClickListener {
             onBackPressed()
         }
 
         val newsItem = intent.getParcelableExtra<NewsItem>("NEWS_ITEM")
         newsItem?.let {
             showDetails(it)
-            setupView()
         }
     }
 
@@ -35,18 +31,4 @@ class DetailNewsActivity : AppCompatActivity() {
         binding.tvDetailName.text = newsItem.title
         binding.tvDetailDescription.text = newsItem.content
     }
-
-    private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-        supportActionBar?.hide()
-    }
-
 }
