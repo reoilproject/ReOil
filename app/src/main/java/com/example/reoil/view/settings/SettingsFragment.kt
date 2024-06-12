@@ -52,13 +52,10 @@ class SettingsFragment : Fragment() {
         }
 
         binding.containerLocation.setOnClickListener {
-            // Menampilkan imageViewProgress
             binding.imageViewProgress.visibility = View.VISIBLE
-
-            // Memulai animasi bounce pada imageViewProgress
             val animator = AnimatorInflater.loadAnimator(context, R.animator.bounce_progress) as Animator
-            animator.setTarget(binding.imageViewProgress)  // Menargetkan imageViewProgress untuk animasi
-            animator.start()  // Memulai animasi
+            animator.setTarget(binding.imageViewProgress)
+            animator.start()
 
             animator.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {

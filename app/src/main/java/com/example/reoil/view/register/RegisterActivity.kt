@@ -12,7 +12,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.reoil.R
 import com.example.reoil.databinding.ActivityRegisterBinding
-import com.example.reoil.view.form.FormProfileActivity
 import com.example.reoil.view.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -97,27 +96,39 @@ class RegisterActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(this, FormProfileActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Yeah!")
-                        setMessage("Akun dengan $email sudah jadi nih. Yuk, lengkapi user profile terlebih dahulu.")
-                        setPositiveButton("Lanjut") { _, _ ->
+                    val user = auth.currentUser
+                    user?.sendEmailVerification()?.addOnCompleteListener { verificationTask ->
+                        if (verificationTask.isSuccessful) {
+                            val intent = Intent(this, VerificationActivity::class.java).apply {
+                                putExtra("email", email)
+                            }
+                            startActivity(intent)
+                            finish()
+                            AlertDialog.Builder(this).apply {
+                                setTitle("Yeah!")
+                                setMessage("Akun dengan $email sudah jadi nih. Kami telah mengirim email verifikasi. Silakan cek email Anda.")
+                                setPositiveButton("Lanjut") { _, _ ->
+                                }
+                                create()
+                                show()
+                            }
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "Gagal mengirim email verifikasi: ${verificationTask.exception?.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
-                        create()
-                        show()
                     }
                 } else {
                     Toast.makeText(
                         this,
-                        "Registration failed: ${task.exception?.message}",
+                        "Pendaftaran gagal: ${task.exception?.message}",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             }
     }
-
 
     private fun animateTextViews() {
         binding.titleTextView.animate().alpha(1f).setDuration(1000).setStartDelay(500)

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".view.form.FormProfileActivity">
+    tools:context=".view.register.FormProfileActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pp_edit"

@@ -118,6 +118,13 @@
     <string name="history">History</string>
     <string name="subTitleLoginAdmin">Login to your partner account</string>
     <string name="UserLogin">Login as a user</string>
+    <string name="verification">Verification</string>
+    <string name="check_email">Check your email!</string>
+    <string name="sentemail">We\'ve just sent an email to you at</string>
+    <string name="email_sender">reoilproject@gmail.com</string>
+    <string name="taplink">Tap on the link to verify your account,</string>
+    <string name="didnt_receive">Didn\'t receive email?</string>
+    <string name="have_received">I have verified</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>
