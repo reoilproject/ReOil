@@ -51,9 +51,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.9.0")
     implementation("com.google.android.gms:play-services-places:17.1.0")
     implementation("com.google.android.gms:play-services-location:21.3.0")
-    implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
-    implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
-    implementation("androidx.activity:activity:1.9.0")
+    implementation("androidx.activity:activity-ktx:1.9.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -70,7 +68,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-auth:23.0.0")
     implementation ("com.google.firebase:firebase-storage")
     implementation ("com.google.firebase:firebase-database")
-    implementation ("com.google.firebase:firebase-firestore:24.5.0")
+    implementation ("com.google.firebase:firebase-firestore:25.0.0")
     implementation ("com.google.android.gms:play-services-auth:21.2.0")
 
     implementation("androidx.credentials:credentials:1.2.2")
@@ -90,8 +88,10 @@ dependencies {
 
     implementation ("com.google.android.gms:play-services-maps:18.2.0")
 
-    implementation("org.tensorflow:tensorflow-lite-gpu:2.3.0")
-
-
+    implementation("org.tensorflow:tensorflow-lite-gpu:2.13.0")
+    implementation ("org.tensorflow:tensorflow-lite:2.13.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite-task-vision:0.4.4")
 
 }

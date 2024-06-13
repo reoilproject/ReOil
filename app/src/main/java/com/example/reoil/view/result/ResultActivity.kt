@@ -20,10 +20,13 @@ class ResultActivity : AppCompatActivity() {
         setContentView(view)
 
         val imageUri = intent.getStringExtra("imageUri")
-        if (imageUri != null) {
+        val result = intent.getStringExtra("result")
+
+        if (imageUri != null && result != null) {
             val inputStream = contentResolver.openInputStream(Uri.parse(imageUri))
             val bitmap = BitmapFactory.decodeStream(inputStream)
             binding.ivResultCamera.setImageBitmap(bitmap)
+            binding.tvResult.text = result
 
             binding.btBackHome.setOnClickListener {
                 val intent = Intent(this, MainActivity::class.java)

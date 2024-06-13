@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.reoil.databinding.FragmentScanBinding
+import com.example.reoil.utils.ImageClassifierHelper
 import com.example.reoil.utils.getImageUri
 import com.example.reoil.utils.reduceFileImage
 import com.example.reoil.utils.uriToFile
@@ -24,6 +25,7 @@ class ScanFragment : Fragment() {
 
     private var getFile: File? = null
     private var currentImageUri: Uri? = null
+    private lateinit var imageClassifierHelper: ImageClassifierHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +33,8 @@ class ScanFragment : Fragment() {
     ): View? {
         _binding = FragmentScanBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        imageClassifierHelper = ImageClassifierHelper(requireContext())
 
         binding.btnCamera.setOnClickListener {
             startCamera()
@@ -61,7 +65,7 @@ class ScanFragment : Fragment() {
             getFile = uriToFile(currentImageUri!!, requireContext())
             getFile?.let {
                 val reducedFile = reduceFileImage(it)
-                showImage(Uri.fromFile(reducedFile))
+                classifyAndShowImage(Uri.fromFile(reducedFile))
             }
         }
     }
@@ -75,15 +79,20 @@ class ScanFragment : Fragment() {
                 getFile = uriToFile(it, requireContext())
                 getFile?.let { file ->
                     val reducedFile = reduceFileImage(file)
-                    showImage(Uri.fromFile(reducedFile))
+                    classifyAndShowImage(Uri.fromFile(reducedFile))
                 }
             }
         }
     }
 
-    private fun showImage(imageUri: Uri) {
+    private fun classifyAndShowImage(imageUri: Uri) {
+        val inputStream = requireContext().contentResolver.openInputStream(imageUri)
+        val bitmap = BitmapFactory.decodeStream(inputStream)
+        val result = imageClassifierHelper.classifyImage(bitmap)
+
         val intent = Intent(requireContext(), ResultActivity::class.java)
         intent.putExtra("imageUri", imageUri.toString())
+        intent.putExtra("result", result)
         startActivity(intent)
     }
 
