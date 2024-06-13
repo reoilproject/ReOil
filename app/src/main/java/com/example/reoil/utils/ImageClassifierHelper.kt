@@ -1,38 +1,44 @@
 package com.example.reoil.utils
 
-import android.content.Context
-import android.graphics.Bitmap
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.Interpreter
-import org.tensorflow.lite.support.common.FileUtil
-import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import com.example.reoil.api.ApiService
+import com.example.reoil.response.PredictionResponse
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 
-class ImageClassifierHelper(context: Context) {
-    private var interpreter: Interpreter
+class ImageClassifierHelper {
+
+    private val apiService: ApiService
 
     init {
-        val model = FileUtil.loadMappedFile(context, "Minyaq.tflite")
-        interpreter = Interpreter(model)
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://index-kgsrrlgc3a-et.a.run.app")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        apiService = retrofit.create(ApiService::class.java)
     }
 
-    fun classifyImage(bitmap: Bitmap): String {
-        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
-        val tensorImage = TensorImage(DataType.FLOAT32)
-        tensorImage.load(resizedBitmap)
-        val byteBuffer = tensorImage.buffer
+    fun classifyImage(file: File, callback: (String) -> Unit) {
+        val requestFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
 
-        val outputBuffer = TensorBuffer.createFixedSize(intArrayOf(1, 3), DataType.FLOAT32)
-        interpreter.run(byteBuffer, outputBuffer.buffer.rewind())
+        apiService.predictImage(body).enqueue(object : retrofit2.Callback<PredictionResponse> {
+            override fun onResponse(call: retrofit2.Call<PredictionResponse>, response: retrofit2.Response<PredictionResponse>) {
+                if (response.isSuccessful) {
+                    callback(response.body()?.prediction ?: "Unknown")
+                } else {
+                    callback("Error")
+                }
+            }
 
-        val results = outputBuffer.floatArray
-        val maxIndex = results.indices.maxByOrNull { results[it] } ?: -1
-
-        return when (maxIndex) {
-            0 -> "Kotor"
-            1 -> "Lumayan Kotor"
-            2 -> "Bersih"
-            else -> "Tidak Diketahui"
-        }
+            override fun onFailure(call: retrofit2.Call<PredictionResponse>, t: Throwable) {
+                callback("Failure: ${t.message}")
+            }
+        })
     }
 }
+

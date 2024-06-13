@@ -28,6 +28,14 @@ class ResultActivity : AppCompatActivity() {
             binding.ivResultCamera.setImageBitmap(bitmap)
             binding.tvResult.text = result
 
+            val price = when (result) {
+                "Clean" -> "Rp. 3000/Bottle"
+                "Quite Clean" -> "Rp. 2000/Bottle"
+                "Dirty" -> "Rp. 1000/Bottle"
+                else -> "Harga Tidak Diketahui"
+            }
+            binding.predictHarga.text = price
+
             binding.btBackHome.setOnClickListener {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

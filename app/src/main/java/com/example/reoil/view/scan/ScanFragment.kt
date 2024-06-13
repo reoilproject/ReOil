@@ -2,7 +2,6 @@ package com.example.reoil.view.scan
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -34,7 +33,7 @@ class ScanFragment : Fragment() {
         _binding = FragmentScanBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        imageClassifierHelper = ImageClassifierHelper(requireContext())
+        imageClassifierHelper = ImageClassifierHelper()
 
         binding.btnCamera.setOnClickListener {
             startCamera()
@@ -86,15 +85,24 @@ class ScanFragment : Fragment() {
     }
 
     private fun classifyAndShowImage(imageUri: Uri) {
-        val inputStream = requireContext().contentResolver.openInputStream(imageUri)
-        val bitmap = BitmapFactory.decodeStream(inputStream)
-        val result = imageClassifierHelper.classifyImage(bitmap)
-
-        val intent = Intent(requireContext(), ResultActivity::class.java)
-        intent.putExtra("imageUri", imageUri.toString())
-        intent.putExtra("result", result)
-        startActivity(intent)
+        getFile?.let { file ->
+            showLoading(true)
+            imageClassifierHelper.classifyImage(file) { result ->
+                activity?.runOnUiThread {
+                    showLoading(false)
+                    val intent = Intent(requireContext(), ResultActivity::class.java)
+                    intent.putExtra("imageUri", imageUri.toString())
+                    intent.putExtra("result", result)
+                    startActivity(intent)
+                }
+            }
+        }
     }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
