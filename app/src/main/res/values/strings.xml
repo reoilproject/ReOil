@@ -125,6 +125,13 @@
     <string name="taplink">Tap on the link to verify your account,</string>
     <string name="didnt_receive">Didn\'t receive email?</string>
     <string name="have_received">I have verified</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="desc_dashboard">Take a look at your store</string>
+    <string name="title_registerPartner">Register as a partner</string>
+    <string name="desc_registerPartner">Be a partner with Reoil</string>
+    <string name="exchangeTitle">Exchange</string>
+    <string name="title_bank">Bank Account</string>
+    <string name="desc_bank">Transfer your balance to your bank account</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>

@@ -248,33 +248,4 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
-    <TextView
-        android:id="@+id/tv_askPartner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="8dp"
-        android:alpha="0"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/askPartner"
-        android:textColor="@color/grey"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginGoogle" />
-
-    <TextView
-        android:id="@+id/bt_partnerLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:alpha="0"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/partnerLogin"
-        android:textColor="@color/green"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
-        app:layout_constraintStart_toEndOf="@+id/tv_askPartner"
-        app:layout_constraintTop_toBottomOf="@+id/loginGoogle" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

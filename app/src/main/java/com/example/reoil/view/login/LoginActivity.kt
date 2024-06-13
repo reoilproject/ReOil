@@ -72,11 +72,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btPartnerLogin.setOnClickListener {
-            val intent = Intent(this, AdminLoginActivity::class.java)
-            startActivity(intent)
-        }
-
         binding.tvForgotpassword.setOnClickListener {
             val animation = ScaleAnimation(
                 1f, 1.2f,
@@ -229,7 +224,5 @@ class LoginActivity : AppCompatActivity() {
         binding.logoGoogle.animate().alpha(1f).setDuration(1000).setStartDelay(2900)
         binding.textView3.animate().alpha(1f).setDuration(1000).setStartDelay(3100)
         binding.tvRegister.animate().alpha(1f).setDuration(1000).setStartDelay(3400)
-        binding.tvAskPartner.animate().alpha(1f).setDuration(1000).setStartDelay(3700)
-        binding.btPartnerLogin.animate().alpha(1f).setDuration(1000).setStartDelay(3900)
     }
 }
