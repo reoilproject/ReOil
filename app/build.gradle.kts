@@ -90,6 +90,8 @@ dependencies {
 
     implementation ("com.google.android.gms:play-services-maps:18.2.0")
 
+    implementation("org.tensorflow:tensorflow-lite-gpu:2.3.0")
+
 
 
 }
