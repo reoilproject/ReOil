@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.reoil.R
 import com.example.reoil.databinding.FragmentSettingsBinding
+import com.example.reoil.store.DashboardActivity
 import com.example.reoil.utils.PreferencesHelper
 import com.example.reoil.view.login.LoginActivity
 import com.example.reoil.view.map.MapActivity
@@ -43,6 +44,11 @@ class SettingsFragment : Fragment() {
 
         binding.containerGeneral.setOnClickListener {
             val intent = Intent(context, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.containerRegisterPartner.setOnClickListener{
+            val intent = Intent(context, DashboardActivity::class.java)
             startActivity(intent)
         }
 

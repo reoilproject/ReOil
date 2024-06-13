@@ -132,6 +132,8 @@
     <string name="exchangeTitle">Exchange</string>
     <string name="title_bank">Bank Account</string>
     <string name="desc_bank">Transfer your balance to your bank account</string>
+    <string name="title_ewallet">E-Wallet</string>
+    <string name="desc_ewallet">Transfer your balance to your E-Wallet account</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>

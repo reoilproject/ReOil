@@ -148,7 +148,7 @@
                 android:fontFamily="@font/montserrat_semibold"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/title_bank"
+                android:text="@string/title_ewallet"
                 app:layout_constraintStart_toEndOf="@+id/iv_ewallet"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -157,7 +157,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text="@string/desc_bank"
+                android:text="@string/desc_ewallet"
                 android:fontFamily="@font/montserrat_medium"
                 android:textSize="8sp"
                 android:textColor="@color/grey"

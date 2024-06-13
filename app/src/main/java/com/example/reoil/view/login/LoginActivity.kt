@@ -18,8 +18,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.reoil.R
 import com.example.reoil.databinding.ActivityLoginBinding
 import com.example.reoil.main.MainActivity
-import com.example.reoil.main.PartnerActivity
-import com.example.reoil.store.AdminLoginActivity
 import com.example.reoil.utils.PreferencesHelper
 import com.example.reoil.view.register.RegisterActivity
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption

@@ -47,9 +47,6 @@
             android:name=".view.notification.NotificationActivity"
             android:exported="false" />
         <activity
-            android:name=".view.rewardpage.RewardPageActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.login.LoginActivity"
             android:exported="false" />
         <activity
@@ -65,10 +62,10 @@
             android:name=".view.settings.AboutUsActivity"
             android:exported="false" />
         <activity
-            android:name=".store.AdminLoginActivity"
+            android:name=".store.DashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".main.PartnerActivity"
+            android:name=".store.ExchangeActivity"
             android:exported="false" />
         <activity
             android:name=".main.SplashScreen"
