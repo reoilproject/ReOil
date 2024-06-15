@@ -5,26 +5,27 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.example.reoil.R
 import com.example.reoil.databinding.ActivityRegisterBinding
+import com.example.reoil.view.ViewModelFactory
 import com.example.reoil.view.login.LoginActivity
-import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var auth: FirebaseAuth
+    private val registerViewModel: RegisterViewModel by viewModels { ViewModelFactory(application) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        auth = FirebaseAuth.getInstance()
 
         binding.edtEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -51,6 +52,7 @@ class RegisterActivity : AppCompatActivity() {
 
         setupView()
         setupAction()
+        observeViewModel()
         animateTextViews()
     }
 
@@ -87,47 +89,48 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            registerUser(email, password)
+            showLoading(true)
+            registerViewModel.registerUser(email, password)
         }
     }
 
-
-    private fun registerUser(email: String, password: String) {
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    user?.sendEmailVerification()?.addOnCompleteListener { verificationTask ->
-                        if (verificationTask.isSuccessful) {
-                            val intent = Intent(this, VerificationActivity::class.java).apply {
-                                putExtra("email", email)
-                            }
-                            startActivity(intent)
-                            finish()
-                            AlertDialog.Builder(this).apply {
-                                setTitle("Yeah!")
-                                setMessage("Akun dengan $email sudah jadi nih. Kami telah mengirim email verifikasi. Silakan cek email Anda.")
-                                setPositiveButton("Lanjut") { _, _ ->
-                                }
-                                create()
-                                show()
-                            }
-                        } else {
-                            Toast.makeText(
-                                this,
-                                "Gagal mengirim email verifikasi: ${verificationTask.exception?.message}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                } else {
-                    Toast.makeText(
-                        this,
-                        "Pendaftaran gagal: ${task.exception?.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+    private fun observeViewModel() {
+        registerViewModel.registrationStatus.observe(this, Observer { status ->
+            showLoading(false)
+            if (status) {
+                val email = binding.edtEmail.text.toString()
+                val intent = Intent(this, VerificationActivity::class.java).apply {
+                    putExtra("email", email)
+                }
+                startActivity(intent)
+                finish()
+                AlertDialog.Builder(this).apply {
+                    setTitle("Yeah!")
+                    setMessage("Akun dengan $email sudah jadi nih. Kami telah mengirim email verifikasi. Silakan cek email Anda.")
+                    setPositiveButton("Lanjut") { _, _ -> }
+                    create()
+                    show()
                 }
             }
+        })
+
+        registerViewModel.verificationEmailStatus.observe(this, Observer { status ->
+            if (!status) {
+                showLoading(false)
+                Toast.makeText(this, "Gagal mengirim email verifikasi: ${registerViewModel.errorMessage.value}", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        registerViewModel.errorMessage.observe(this, Observer { message ->
+            if (message != null) {
+                showLoading(false)
+                Toast.makeText(this, "Pendaftaran gagal: $message", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun animateTextViews() {

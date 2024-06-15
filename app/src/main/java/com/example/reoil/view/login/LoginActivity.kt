@@ -7,39 +7,39 @@ import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.GetCredentialResponse
 import androidx.credentials.exceptions.GetCredentialException
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.reoil.R
 import com.example.reoil.databinding.ActivityLoginBinding
 import com.example.reoil.main.MainActivity
-import com.example.reoil.utils.PreferencesHelper
+import com.example.reoil.view.ViewModelFactory
 import com.example.reoil.view.register.RegisterActivity
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
-import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var preferencesHelper: PreferencesHelper
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance()
-        preferencesHelper = PreferencesHelper(this)
+        val factory = ViewModelFactory(application)
+        loginViewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
 
         binding.loginGoogle.setOnClickListener {
             signIn()
@@ -62,7 +62,16 @@ class LoginActivity : AppCompatActivity() {
             }
 
             showLoading(true)
-            loginUser(email, password)
+            loginViewModel.loginUser(email, password, binding.checkBoxRememberMe.isChecked) { success, message ->
+                showLoading(false)
+                if (success) {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this, "Login failed: $message", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         binding.tvRegister.setOnClickListener {
@@ -98,7 +107,7 @@ class LoginActivity : AppCompatActivity() {
                     reverseAnimation.fillAfter = false
                     binding.tvForgotpassword.startAnimation(reverseAnimation)
 
-                    Toast.makeText(this@LoginActivity, "Coming soon!", Toast.LENGTH_SHORT).show()
+                    showForgotPasswordDialog()
                 }
 
                 override fun onAnimationRepeat(animation: Animation?) {
@@ -138,66 +147,56 @@ class LoginActivity : AppCompatActivity() {
         when (val credential = result.credential) {
             is CustomCredential -> {
                 if (credential.type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
-                    try {
-                        val googleIdTokenCredential =
-                            GoogleIdTokenCredential.createFrom(credential.data)
-                        firebaseAuthWithGoogle(googleIdTokenCredential.idToken)
-                    } catch (e: GoogleIdTokenParsingException) {
-                        Log.e(TAG, "Received an invalid google id token response", e)
+                    val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+                    loginViewModel.handleSignIn(googleIdTokenCredential) { success, message ->
                         showLoading(false)
+                        if (success) {
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 } else {
                     Log.e(TAG, "Unexpected type of credential")
                     showLoading(false)
                 }
             }
-
             else -> {
                 Log.e(TAG, "Unexpected type of credential")
             }
         }
     }
 
+    private fun showForgotPasswordDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Enter your email")
 
-    private fun loginUser(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                showLoading(false)
-                if (task.isSuccessful) {
-                    if (binding.checkBoxRememberMe.isChecked) {
-                        preferencesHelper.setLoginStatus(true)
-                    } else {
-                        preferencesHelper.clearLoginStatus()
-                    }
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(
-                        this,
-                        "Login failed: ${task.exception?.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+        val view = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
+        val emailEditText = view.findViewById<EditText>(R.id.emailEditText)
+
+        builder.setView(view)
+        builder.setPositiveButton("Send") { _, _ ->
+            val email = emailEditText.text.toString()
+            if (email.isNotEmpty()) {
+                sendPasswordResetEmail(email)
+            } else {
+                Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_SHORT).show()
             }
+        }
+        builder.setNegativeButton("Cancel", null)
+        builder.show()
     }
 
-    private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                showLoading(false)
+
+    private fun sendPasswordResetEmail(email: String) {
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    if (binding.checkBoxRememberMe.isChecked) {
-                        preferencesHelper.setLoginStatus(true)
-                    } else {
-                        preferencesHelper.clearLoginStatus()
-                    }
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    Toast.makeText(this, "Password reset email has been sent.", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Failed to send password reset email: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
     }

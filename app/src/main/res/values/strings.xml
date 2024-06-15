@@ -143,6 +143,12 @@
     <string name="new_password_hint">input new password</string>
     <string name="confirm_new_password_hint">input password confirmation</string>
 
+    <string name="user_not_logged_in">User not logged in</string>
+    <string name="email_not_verified">Email has not been verified. Please check your email!.</string>
+    <string name="verification_email_sent">Verification email has been resent.</string>
+    <string name="verification_email_failed">Failed to resend verification email: %1$s</string>
+    <string name="wait_seconds">Wait for %1$d seconds</string>
+
     <string-array name="title_notif">
         <item>Congratulations!</item>
         <item>Welcome!</item>

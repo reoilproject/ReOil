@@ -3,6 +3,7 @@ package com.example.reoil.view.settings
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -43,11 +44,15 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.btnSave.setOnClickListener {
+            showLoading(true)
+
             val username = binding.usernameProfile.text.toString()
             val phone = binding.phoneProfile.text.toString()
             val address = binding.addressProfile.text.toString()
             val imageUrl = profileViewModel.imageUrl.value ?: profileViewModel.userProfile.value?.imageUrl ?: ""
+
             profileViewModel.saveUserProfile(username, phone, address, imageUrl)
+            showLoading(false)
         }
 
         val user = FirebaseAuth.getInstance().currentUser
@@ -84,6 +89,10 @@ class ProfileActivity : AppCompatActivity() {
                 profileViewModel.uploadImage(uri)
             }
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     companion object {

@@ -114,6 +114,8 @@
         android:drawablePadding="10dp"
         android:hint="@string/form_address"
         android:padding="12dp"
+        android:inputType="textMultiLine"
+        android:gravity="top|start"
         app:layout_constraintEnd_toEndOf="@+id/phone_profile"
         app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="@+id/phone_profile"

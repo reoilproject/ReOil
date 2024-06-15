@@ -1,15 +1,11 @@
 package com.example.reoil.view.settings
 
-import android.animation.Animator
-import android.animation.AnimatorInflater
-import android.animation.AnimatorListenerAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.reoil.R
 import com.example.reoil.databinding.FragmentSettingsBinding
 import com.example.reoil.store.DashboardActivity
 import com.example.reoil.utils.PreferencesHelper
@@ -27,7 +23,7 @@ class SettingsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -47,7 +43,12 @@ class SettingsFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.containerRegisterPartner.setOnClickListener{
+        binding.containerLocation.setOnClickListener {
+            val intent = Intent(context, MapActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.containerRegisterPartner.setOnClickListener {
             val intent = Intent(context, DashboardActivity::class.java)
             startActivity(intent)
         }
@@ -55,21 +56,6 @@ class SettingsFragment : Fragment() {
         binding.containerAboutus.setOnClickListener {
             val intent = Intent(context, AboutUsActivity::class.java)
             startActivity(intent)
-        }
-
-        binding.containerLocation.setOnClickListener {
-            binding.imageViewProgress.visibility = View.VISIBLE
-            val animator = AnimatorInflater.loadAnimator(context, R.animator.bounce_progress) as Animator
-            animator.setTarget(binding.imageViewProgress)
-            animator.start()
-
-            animator.addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    val intent = Intent(context, MapActivity::class.java)
-                    startActivity(intent)
-                    binding.imageViewProgress.visibility = View.GONE
-                }
-            })
         }
 
         binding.containerLogout.setOnClickListener {

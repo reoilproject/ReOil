@@ -1,6 +1,7 @@
 package com.example.reoil.view.settings
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.reoil.databinding.ActivityChangePasswordBinding
@@ -19,6 +20,10 @@ class ChangePasswordActivity : AppCompatActivity() {
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
+
+        binding.btBack.setOnClickListener {
+            onBackPressed()
+        }
 
         // Setup button listeners
         setupListeners()
@@ -56,22 +61,29 @@ class ChangePasswordActivity : AppCompatActivity() {
     }
 
     private fun changePassword(oldPassword: String, newPassword: String) {
+        showLoading(true)
         val user = auth.currentUser
         val credential = EmailAuthProvider.getCredential(user!!.email!!, oldPassword)
 
-        user.reauthenticate(credential).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                user.updatePassword(newPassword).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
+        user.reauthenticate(credential).addOnCompleteListener { reauthTask ->
+            if (reauthTask.isSuccessful) {
+                user.updatePassword(newPassword).addOnCompleteListener { updateTask ->
+                    showLoading(false)
+                    if (updateTask.isSuccessful) {
                         Toast.makeText(this, "Password updated successfully", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(this, "Failed to update password", Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {
+                showLoading(false)
                 Toast.makeText(this, "Re-authentication failed", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }
 
