@@ -149,6 +149,7 @@
     <string name="verification_email_failed">Failed to resend verification email: %1$s</string>
     <string name="wait_seconds">Wait for %1$d seconds</string>
     <string name="store_name">Store Name</string>
+    <string name="website">Our Website</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>

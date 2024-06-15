@@ -68,12 +68,12 @@
                     android:id="@+id/tv_general"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/montserrat_semibold"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_semibold"
                     android:text="@string/title_general"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@+id/userIcon"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,10 +82,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:text="@string/desc_general"
                     android:fontFamily="@font/montserrat_medium"
-                    android:textSize="8sp"
+                    android:text="@string/desc_general"
                     android:textColor="@color/grey"
+                    android:textSize="8sp"
                     app:layout_constraintStart_toEndOf="@+id/userIcon"
                     app:layout_constraintTop_toBottomOf="@+id/tv_general" />
 
@@ -143,12 +143,12 @@
                     android:id="@+id/tv_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/montserrat_semibold"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_semibold"
                     android:text="@string/title_location"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@+id/iv_location"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -157,10 +157,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:text="@string/desc_location"
                     android:fontFamily="@font/montserrat_medium"
-                    android:textSize="8sp"
+                    android:text="@string/desc_location"
                     android:textColor="@color/grey"
+                    android:textSize="8sp"
                     app:layout_constraintStart_toEndOf="@+id/iv_location"
                     app:layout_constraintTop_toBottomOf="@+id/tv_location" />
 
@@ -209,12 +209,12 @@
                     android:id="@+id/tv_registerpartner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/montserrat_semibold"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_semibold"
                     android:text="@string/title_registerPartner"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@+id/iv_store"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -223,10 +223,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:text="@string/desc_registerPartner"
                     android:fontFamily="@font/montserrat_medium"
-                    android:textSize="8sp"
+                    android:text="@string/desc_registerPartner"
                     android:textColor="@color/grey"
+                    android:textSize="8sp"
                     app:layout_constraintStart_toEndOf="@+id/iv_store"
                     app:layout_constraintTop_toBottomOf="@+id/tv_registerpartner" />
 
@@ -244,6 +244,7 @@
             app:layout_constraintHorizontal_bias="0.603"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/container_aboutus">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -274,12 +275,12 @@
                     android:id="@+id/tv_logout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/montserrat_semibold"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_semibold"
                     android:text="@string/logout"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@+id/iv_logout"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -288,10 +289,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:text="@string/desc_logout"
                     android:fontFamily="@font/montserrat_medium"
-                    android:textSize="8sp"
+                    android:text="@string/desc_logout"
                     android:textColor="@color/grey"
+                    android:textSize="8sp"
                     app:layout_constraintStart_toEndOf="@+id/iv_logout"
                     app:layout_constraintTop_toBottomOf="@+id/tv_logout" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -309,6 +310,7 @@
             app:layout_constraintHorizontal_bias="0.603"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/container_registerPartner">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -338,12 +340,12 @@
                     android:id="@+id/tv_aboutUs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/montserrat_semibold"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_semibold"
                     android:text="@string/title_aboutUs"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@+id/iv_aboutUs"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -352,10 +354,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:text="@string/desc_aboutUscont"
                     android:fontFamily="@font/montserrat_medium"
-                    android:textSize="8sp"
+                    android:text="@string/desc_aboutUscont"
                     android:textColor="@color/grey"
+                    android:textSize="8sp"
                     app:layout_constraintStart_toEndOf="@+id/iv_aboutUs"
                     app:layout_constraintTop_toBottomOf="@+id/tv_aboutUs" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -370,6 +372,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/container_logout" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_website"
+            android:layout_width="95dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/green"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Our Website"
+            android:textSize="7dp"
+            app:cornerRadius="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_reoilTextLogo" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
