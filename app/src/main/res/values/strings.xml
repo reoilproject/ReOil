@@ -27,7 +27,7 @@
     <string name="remember_me">Remember me</string>
     <string name="not_a_member">Not a member?</string>
     <string name="registerTextButton">Sign Up</string>
-    <string name="loginGoogleText">Sign up with google</string>
+    <string name="loginGoogleText">Sign In with google</string>
     <string name="LoginButtonText">Login</string>
     <string name="passwordTitleInput">Password</string>
     <string name="emailTitleInput">Email</string>
@@ -148,6 +148,7 @@
     <string name="verification_email_sent">Verification email has been resent.</string>
     <string name="verification_email_failed">Failed to resend verification email: %1$s</string>
     <string name="wait_seconds">Wait for %1$d seconds</string>
+    <string name="store_name">Store Name</string>
 
     <string-array name="title_notif">
         <item>Congratulations!</item>

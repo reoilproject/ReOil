@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/result"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".view.settings.RegisterPartnerFormActivity">
+
+    <EditText
+        android:id="@+id/store_name"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/bg_edit_text_profile"
+        android:drawableStart="@drawable/ic_baseline_person_24"
+        android:drawablePadding="10dp"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_gallery" />
+
+    <EditText
+        android:id="@+id/phone_partner"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/store_name"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/bg_edit_text_profile"
+        android:drawableStart="@drawable/baseline_phone_24"
+        android:drawablePadding="10dp"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/store_name" />
+
+    <TextView
+        android:id="@+id/textViewAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/addressTextView"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/address_formstore"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/address_formstore"
+        android:layout_width="300dp"
+        android:layout_height="95dp"
+        android:layout_below="@id/phone_partner"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_edit_text_profile"
+        android:drawableStart="@drawable/address"
+        android:drawablePadding="10dp"
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_partner" />
+
+    <TextView
+        android:id="@+id/textViewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/store_name"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/store_name"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/phoneTextView"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/phone_partner"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="23dp"
+        android:contentDescription="@string/back_button"
+        android:src="@drawable/baseline_arrow_back_ios_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_register"
+        android:layout_width="211dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Register"
+        android:textColor="@color/green"
+        android:textSize="12sp"
+        app:cornerRadius="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/green"
+        app:strokeWidth="1dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_gallery"
+        android:layout_width="211dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/green"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Gallery"
+        android:textSize="12sp"
+        app:cornerRadius="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_result_camera" />
+
+    <TextView
+        android:id="@+id/tv_titleResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Partner Registration"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_result_camera"
+        android:layout_width="299dp"
+        android:layout_height="199dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_titleResult"
+        tools:srcCompat="@drawable/put_store_img" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

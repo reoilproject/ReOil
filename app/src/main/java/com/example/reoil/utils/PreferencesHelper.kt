@@ -11,6 +11,7 @@ class PreferencesHelper(context: Context) {
         private const val PREFS_NAME = "loginPrefs"
         private const val IS_LOGGED_IN = "isLoggedIn"
         private const val USERNAME = "username"
+        private const val IS_PARTNER_REGISTERED = "isPartnerRegistered"
     }
 
     fun setLoginStatus(isLoggedIn: Boolean) {
@@ -37,4 +38,14 @@ class PreferencesHelper(context: Context) {
     fun getUsername(): String? {
         return preferences.getString(USERNAME, null)
         }
+
+    fun setPartnerRegistered(isRegistered: Boolean) {
+        val editor = preferences.edit()
+        editor.putBoolean(IS_PARTNER_REGISTERED, isRegistered)
+        editor.apply()
     }
+
+    fun isPartnerRegistered(): Boolean {
+        return preferences.getBoolean(IS_PARTNER_REGISTERED, false)
+    }
+ }

@@ -1,6 +1,7 @@
 package com.example.reoil.view.scan
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,7 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import com.example.reoil.R
 import com.example.reoil.databinding.FragmentScanBinding
 import com.example.reoil.utils.ImageClassifierHelper
 import com.example.reoil.utils.getImageUri
@@ -36,13 +40,61 @@ class ScanFragment : Fragment() {
         imageClassifierHelper = ImageClassifierHelper()
 
         binding.btnCamera.setOnClickListener {
-            startCamera()
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle("Scan Guide")
+            builder.setMessage("Use a 600 ml mineral bottle as a container.\n" +
+                    "Ensure good lightning for the scan.\n" +
+                    "If an error occurs, please repeat the scan.\n" +
+                    "Find an oil exchange location.\n" +
+                    "Contact Store.").apply {
+            }
+            builder.setPositiveButton("OK") { dialog, which ->
+                startCamera()
+            }
+            builder.setNegativeButton("Cancel") { dialog, which ->
+            }
+
+            val alertDialog = builder.create()
+            alertDialog.show()
+
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(resources.getColor(R.color.green))
+            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(resources.getColor(R.color.green))
+
+            val dialogWindow = alertDialog.window
+            dialogWindow?.setBackgroundDrawableResource(R.drawable.rounded_dialog)
+
+            // Set font to Montserrat
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).typeface = ResourcesCompat.getFont(requireContext(), R.font.montserrat_semibold)
+            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).typeface = ResourcesCompat.getFont(requireContext(), R.font.montserrat_semibold)
         }
 
         binding.btnGallery.setOnClickListener {
-            openGallery()
-        }
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle("Scan Guide")
+            builder.setMessage("Use a 600 ml mineral bottle as a container.\n" +
+                    "Ensure good lightning for the scan.\n" +
+                    "If an error occurs, please repeat the scan.\n" +
+                    "Find an oil exchange location.\n" +
+                    "Contact Store.").apply {
+            }
+            builder.setPositiveButton("OK") { dialog, which ->
+                openGallery()
+            }
+            builder.setNegativeButton("Cancel") { dialog, which ->
+            }
 
+            val alertDialog = builder.create()
+            alertDialog.show()
+
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(resources.getColor(R.color.green))
+            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(resources.getColor(R.color.green))
+
+            val dialogWindow = alertDialog.window
+            dialogWindow?.setBackgroundDrawableResource(R.drawable.rounded_dialog)
+
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).typeface = ResourcesCompat.getFont(requireContext(), R.font.montserrat_semibold)
+            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).typeface = ResourcesCompat.getFont(requireContext(), R.font.montserrat_semibold)
+        }
         return view
     }
 

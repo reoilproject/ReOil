@@ -67,7 +67,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/iv_resultCamera"
+        android:id="@+id/iv_result_camera"
         android:layout_width="569dp"
         android:layout_height="264dp"
         android:layout_marginTop="20dp"
@@ -88,7 +88,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_resultCamera" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_result_camera" />
 
         <TextView
             android:id="@+id/quality_oil"

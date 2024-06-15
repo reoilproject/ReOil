@@ -65,6 +65,9 @@
             android:name=".store.ExchangeActivity"
             android:exported="false" />
         <activity
+            android:name=".view.register.RegisterPartnerFormActivity"
+            android:exported="false" />
+        <activity
             android:name=".main.SplashScreen"
             android:exported="true">
             <intent-filter>

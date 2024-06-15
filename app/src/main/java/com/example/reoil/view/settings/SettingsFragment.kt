@@ -12,6 +12,7 @@ import com.example.reoil.utils.PreferencesHelper
 import com.example.reoil.view.login.LoginActivity
 import com.example.reoil.view.map.MapActivity
 import com.example.reoil.view.notification.NotificationActivity
+import com.example.reoil.view.register.RegisterPartnerFormActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class SettingsFragment : Fragment() {
@@ -49,8 +50,13 @@ class SettingsFragment : Fragment() {
         }
 
         binding.containerRegisterPartner.setOnClickListener {
-            val intent = Intent(context, DashboardActivity::class.java)
-            startActivity(intent)
+            if (preferencesHelper.isPartnerRegistered()) {
+                val intent = Intent(context, DashboardActivity::class.java)
+                startActivity(intent)
+            } else {
+                val intent = Intent(context, RegisterPartnerFormActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         binding.containerAboutus.setOnClickListener {
@@ -62,11 +68,15 @@ class SettingsFragment : Fragment() {
             logout()
         }
 
+        if (preferencesHelper.isPartnerRegistered()) {
+            binding.tvRegisterpartner.text = "Dashboard"
+        }
     }
 
     private fun logout() {
         FirebaseAuth.getInstance().signOut()
         preferencesHelper.clearLoginStatus()
+        preferencesHelper.setPartnerRegistered(false) // Add this line
         startActivity(Intent(requireContext(), LoginActivity::class.java))
         requireActivity().finish()
     }
