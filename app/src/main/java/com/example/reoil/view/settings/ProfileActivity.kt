@@ -29,6 +29,11 @@ class ProfileActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        binding.btnChangePassword.setOnClickListener {
+            val intent = Intent(this, ChangePasswordActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.usernameProfile.hint = preferencesHelper.getUsername()
 
         binding.btnGallery.setOnClickListener {

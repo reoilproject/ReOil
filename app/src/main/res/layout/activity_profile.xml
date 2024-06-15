@@ -10,8 +10,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pp_edit"
-        android:layout_width="92dp"
-        android:layout_height="92dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/profilepicture"
         app:layout_constraintEnd_toEndOf="parent"
@@ -168,6 +168,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/address_profile" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_change_password"
+        android:layout_width="300dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/gray"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/changepassword"
+        android:textSize="12sp"
+        app:cornerRadius="6dp"
+        app:icon="@drawable/ic_baseline_lock_24"
+        app:iconSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_gallery" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_save"
