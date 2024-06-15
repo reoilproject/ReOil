@@ -211,6 +211,7 @@ class LoginActivity : AppCompatActivity() {
         binding.textViewEmail.animate().alpha(1f).setDuration(1000).setStartDelay(900)
         binding.edtEmail.animate().alpha(1f).setDuration(1000).setStartDelay(1100)
         binding.textViewPassword.animate().alpha(1f).setDuration(1000).setStartDelay(1300)
+        binding.passwordInputLayout.animate().alpha(1f).setDuration(1000).setStartDelay(1500)
         binding.edtPassword.animate().alpha(1f).setDuration(1000).setStartDelay(1500)
         binding.checkBoxRememberMe.animate().alpha(1f).setDuration(1000).setStartDelay(1700)
         binding.textViewRememberMe.animate().alpha(1f).setDuration(1000).setStartDelay(1900)

@@ -20,16 +20,10 @@
             android:name=".view.settings.ChangePasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".store.AdminRegisterActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.register.VerificationActivity"
             android:exported="false" />
         <activity
             android:name=".view.register.FormProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.drop.DropPointActivity"
             android:exported="false" />
         <activity
             android:name=".view.settings.ProfileActivity"
