@@ -71,11 +71,11 @@ class ScanFragment : Fragment() {
         binding.btnGallery.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())
             builder.setTitle("Scan Guide")
-            builder.setMessage("Use a 600 ml mineral bottle as a container.\n" +
-                    "Ensure good lightning for the scan.\n" +
-                    "If an error occurs, please repeat the scan.\n" +
-                    "Find an oil exchange location.\n" +
-                    "Contact Store.").apply {
+            builder.setMessage("1. Use a 600 ml mineral bottle as a container.\n" +
+                    "2. Ensure good lightning for the scan.\n" +
+                    "3. If an error occurs, please repeat the scan.\n" +
+                    "4. Find an oil exchange location.\n" +
+                    "5. Contact Store.").apply {
             }
             builder.setPositiveButton("OK") { dialog, which ->
                 openGallery()

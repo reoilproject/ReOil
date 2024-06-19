@@ -2,8 +2,11 @@ package com.example.reoil.store
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reoil.R
@@ -46,6 +49,11 @@ class DashboardActivity : AppCompatActivity() {
 
         adapter = AdminHistoryAdapter(orderList)
         recyclerView.adapter = adapter
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = ContextCompat.getColor(this, R.color.green)
+        }
 
         orderList.add(Order("Order Completed", "10 Liter", "Rp 100.000"))
         orderList.add(Order("Order Completed", "20 Liter", "Rp 200.000"))

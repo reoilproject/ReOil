@@ -185,8 +185,12 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
-        builder.setNegativeButton("Cancel", null)
-        builder.show()
+        builder.setNegativeButton("Cancel") { _, _ -> }
+        val alertDialog = builder.show()
+        val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+        positiveButton.setTextColor(resources.getColor(R.color.green))
+        val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+        negativeButton.setTextColor(resources.getColor(R.color.green))
     }
 
 

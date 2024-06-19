@@ -32,7 +32,7 @@ class ResultActivity : AppCompatActivity() {
                 "Clean" -> "Rp. 3000/Bottle"
                 "Quite Clean" -> "Rp. 2000/Bottle"
                 "Dirty" -> "Rp. 1000/Bottle"
-                else -> "Harga Tidak Diketahui"
+                else -> "Try to scan again"
             }
             binding.predictHarga.text = price
 

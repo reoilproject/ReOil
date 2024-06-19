@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
+import com.example.reoil.R
 import com.example.reoil.databinding.ActivityRegisterPartnerBinding
 import com.example.reoil.utils.PreferencesHelper
 
@@ -25,29 +26,30 @@ class RegisterPartnerFormActivity : AppCompatActivity() {
             openGallery()
         }
 
-        binding.backButton.setOnClickListener{
+        binding.backButton.setOnClickListener {
             onBackPressed()
         }
 
         binding.btRegister.setOnClickListener {
-            if (imageUri!= null) {
-                // Show alert dialog with success message
+            if (imageUri != null) {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Registration Successful")
                 builder.setMessage("Your registration has been submitted successfully. Please wait until the Reoil team contacts you.")
                 builder.setPositiveButton("OK") { dialog, which ->
-                    // Set partner registered status to true
                     preferencesHelper.setPartnerRegistered(true)
                     finish()
                 }
-                builder.show()
+                val alertDialog = builder.show()
+                val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                positiveButton.setTextColor(resources.getColor(R.color.green))
             } else {
-                // Show error message if no image is selected
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Error")
                 builder.setMessage("Please select an image before registering.")
                 builder.setPositiveButton("OK") { dialog, which -> }
-                builder.show()
+                val alertDialog = builder.show()
+                val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                positiveButton.setTextColor(resources.getColor(R.color.green))
             }
         }
     }

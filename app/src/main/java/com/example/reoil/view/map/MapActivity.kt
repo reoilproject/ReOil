@@ -45,15 +45,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
     }
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        // Set the map type (e.g. normal, satellite, hybrid)
         mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
-        // Set the camera position (e.g. zoom level, latitude, longitude)
         val cameraPosition = CameraPosition.builder()
-            .target(LatLng(-7.983908, 112.621391)) // Malang, Indonesia
+            .target(LatLng(-7.983908, 112.621391))
             .zoom(12f)
             .build()
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
-        // Add three markers
+
         val marker1 = mMap.addMarker(
             MarkerOptions()
                 .position(LatLng(-7.983908, 112.621391))
@@ -63,7 +61,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
         if (marker1 != null) {
             marker1.tag = "+6281234567890"
         }
-
         val marker2 = mMap.addMarker(
             MarkerOptions()
                 .position(LatLng(-7.983500, 112.623000))
@@ -73,20 +70,27 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
         if (marker2 != null) {
             marker2.tag = "+6281381641530"
         }
-
+        if (marker2 != null) {
+            marker2.tag = "+6281338491334"
+        }
         val marker3 = mMap.addMarker(
             MarkerOptions()
                 .position(LatLng(-7.984000, 112.624000))
                 .title("Warung Amru")
                 .icon(resizeIcon(R.drawable.logo_reoil, 100, 100))
         )
-
+        if (marker3 != null) {
+            marker3.tag = "+6281338491334"
+        }
         val marker4 = mMap.addMarker(
             MarkerOptions()
                 .position(LatLng(-7.981000, 112.626000))
                 .title("Warung April")
                 .icon(resizeIcon(R.drawable.logo_reoil, 100, 100))
         )
+        if (marker4 != null) {
+            marker4.tag = "+6281338491334"
+        }
         val marker5 = mMap.addMarker(
             MarkerOptions()
                 .position(LatLng(-7.986000, 112.620000))
@@ -102,12 +106,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
                 .title("Warung Naswa")
                 .icon(resizeIcon(R.drawable.logo_reoil, 100, 100))
         )
+        if (marker6 != null) {
+            marker6.tag = "+6281338491334"
+        }
         val marker7 = mMap.addMarker(
             MarkerOptions()
                 .position(LatLng(-7.987000, 112.622000))
                 .title("Warung Rafli")
                 .icon(resizeIcon(R.drawable.logo_reoil, 100, 100))
         )
+        if (marker7 != null) {
+            marker7.tag = "+6281338491334"
+        }
 
         // Enable/disable various map features (optional)
         mMap.uiSettings.isZoomControlsEnabled = true
